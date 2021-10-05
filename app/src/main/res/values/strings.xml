@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Slots</string>
+    <string name="score_text">SCORE:</string>
+    <string name="spin_text">SPIN</string>
+    <string name="bet_text">BET:</string>
+    <string name="bet_plus">+</string>
+    <string name="bet_minus">-</string>
+    <string name="default_bet">100</string>
+    <string name="default_roll">7</string>
+    <string name="default_score">1000</string>
+
+</resources>
