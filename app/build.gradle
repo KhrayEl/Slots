@@ -9,8 +9,8 @@ android {
         applicationId "com.khrayel.slots"
         minSdk 25
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "build 4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
