@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,63 +16,71 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/layout_score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/score_text"
-                android:textSize="24sp"
-                app:autoSizeTextType="none" />
-
-            <TextView
-                android:id="@+id/text_Score"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="@string/default_score"
-                android:textSize="24sp"
-                app:autoSizeTextType="none" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/record_text"
+                    android:textSize="24sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/record_text"
-                android:textSize="24sp" />
+                <TextView
+                    android:id="@+id/text_record"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/default_record"
+                    android:textSize="24sp" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/text_record"
+            <LinearLayout
+                android:id="@+id/layout_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:text="@string/default_record"
-                android:textSize="24sp" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/layout_winloss"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score_text"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="none" />
 
-            <TextView
-                android:id="@+id/textWinLoss"
+                <TextView
+                    android:id="@+id/text_Score"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@string/default_score"
+                    android:textSize="24sp"
+                    app:autoSizeTextType="none" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_winloss"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textWinLoss"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -133,42 +141,43 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_spin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/button_spin"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="OnSpinButtonClick"
-                android:text="@string/spin_text" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/layout_bet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_spin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/button_spin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="OnClickSpinButton"
+                    android:text="@string/spin_text" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layout_bet_numbers"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -193,7 +202,7 @@
             <LinearLayout
                 android:id="@+id/layout_bet_buttons"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -202,17 +211,34 @@
                     android:id="@+id/button_bet_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="OnPlusButtonClick"
+                    android:onClick="OnClickPlusButton"
                     android:text="@string/bet_plus" />
 
                 <Button
                     android:id="@+id/button_bet_minus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="OnMinusButtonClick"
+                    android:onClick="OnClickMinusButton"
                     android:text="@string/bet_minus" />
 
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_restart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:onClick="OnClickRestart"
+                android:text="@string/restart_text" />
         </LinearLayout>
 
     </LinearLayout>

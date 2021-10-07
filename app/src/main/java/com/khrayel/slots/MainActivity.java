@@ -1,5 +1,6 @@
 package com.khrayel.slots;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.Resources;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv3.setWidth(width * 7);
             }
 
-        public void OnSpinButtonClick (View spinbutton_view)
+        public void OnClickSpinButton (View spinbutton_view)
             {
 
                 spinbutton_view.setClickable(false);
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
             }
 
-        public void OnPlusButtonClick (View view)
+        public void OnClickPlusButton (View view)
             {
 
                 findViewById(R.id.button_bet_plus).setClickable(false);
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
 
-        public void OnMinusButtonClick (View view)
+        public void OnClickMinusButton (View view)
             {
 
                 findViewById(R.id.button_bet_plus).setClickable(false);
@@ -218,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         private int DecreaseBet (int bet)
             {
-                if (bet == 1||bet==0)
+                if (bet == 1 || bet == 0)
                     {
                         return bet;
                     }
@@ -237,12 +238,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         private int UpdateBet (int new_score_final, int bet)
             {
-                if (new_score_final<=0){return 0;}
+                if (new_score_final <= 0)
+                    {
+                        GameOver();
+                        return 0;
+                    }
                 if (bet > new_score_final)
                     {
                         bet = new_score_final;
                     }
-                {return bet;}
+                {
+                    return bet;
+                }
+
+            }
+
+        private void GameOver ()
+            {
+                findViewById(R.id.layout_bet).setVisibility(View.GONE);
+                findViewById(R.id.layout_restart).setVisibility(View.VISIBLE);
+            }
+        public void OnClickRestart(View view)
+            {
+                TextView tv_bet = findViewById(R.id.text_bet_number);
+                tv_bet.setText(R.string.default_bet);
+
+                TextView tv_score = findViewById(R.id.text_Score);
+                tv_score.setText(R.string.default_score);
+
+                findViewById(R.id.layout_bet).setVisibility(View.VISIBLE);
+                findViewById(R.id.layout_restart).setVisibility(View.GONE);
 
             }
     }

@@ -2,6 +2,7 @@
     <string name="app_name">Slots</string>
     <string name="score_text">SCORE:</string>
     <string name="record_text">RECORD:</string>
+    <string name="restart_text">RESTART</string>
     <string name="spin_text">SPIN</string>
     <string name="bet_text">BET:</string>
     <string name="bet_plus">+</string>
