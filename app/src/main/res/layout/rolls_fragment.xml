@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".RollsFragment">
+
+    <LinearLayout
+        android:id="@+id/layout_rolls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Space
+            android:id="@+id/space_roll_1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/text_roll1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/roll_background"
+            android:elegantTextHeight="false"
+            android:gravity="center"
+            android:text="@string/default_roll"
+             />
+
+        <Space
+            android:id="@+id/space_roll_2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/text_roll2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/roll_background"
+            android:gravity="center"
+            android:text="@string/default_roll"
+             />
+
+        <Space
+            android:id="@+id/space_roll_3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/text_roll3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roll_background"
+            android:gravity="center"
+            android:text="@string/default_roll" />
+
+        <Space
+            android:id="@+id/space_roll_4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</FrameLayout>
