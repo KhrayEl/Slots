@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         int screen_width = Resources.getSystem().getDisplayMetrics().widthPixels;
         int width = screen_width / 25;
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv3.setWidth(width * 7);
 
         TextView record = findViewById(R.id.text_record);
-        String text=LoadDataFromFile();
+        String text = LoadDataFromFile();
         record.setText(text);
     }
 
@@ -56,10 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         spinbutton_view.setClickable(false);
 
-        final Handler handler1 = new Handler();
-        final Handler handler2 = new Handler();
-        final Handler handler3 = new Handler();
-        final Handler handler4 = new Handler();
+        final Handler handler = new Handler(); // handler for delayed rolls
 
 
         TextView tv1 = findViewById(R.id.text_roll1);
@@ -87,16 +85,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         final int new_score_final = new_score + Get_reward(bet, num1, num2, num3);
 
-        handler1.postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
 
             public void run() {
                 tv1.setText(Integer.toString(num1));
-
             }
         }, delay * 1);
 
 
-        handler2.postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
 
             public void run() {
                 tv2.setText(Integer.toString(num2));
@@ -104,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }, delay * 2);
 
-        handler3.postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
 
             public void run() {
                 tv3.setText(Integer.toString(num3));
@@ -113,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }, delay * 3);
 
 
-        handler4.postDelayed(new Runnable() {
+        handler.postDelayed(new Runnable() {
             public void run() {
                 score_view.setText(Integer.toString(new_score_final));
                 int new_bet = UpdateBet(new_score_final, bet);
