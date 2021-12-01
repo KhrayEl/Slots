@@ -1,5 +1,6 @@
 package com.khrayel.slots;
 
+import android.renderscript.Sampler;
 import android.view.View;
 
 import androidx.databinding.Bindable;
@@ -7,6 +8,12 @@ import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.ViewModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
 
 public class SlotsViewModel extends ViewModel implements Observable
     {
@@ -91,6 +98,7 @@ public class SlotsViewModel extends ViewModel implements Observable
         void notifyChange ()
             {
                 callbacks.notifyCallbacks(this, 0, null);
+                slotsModel.WriteFieldsToJSON();
             }
 
         /**
@@ -104,6 +112,10 @@ public class SlotsViewModel extends ViewModel implements Observable
             {
                 callbacks.notifyCallbacks(this, fieldId, null);
             }
+
+
+
+
 
 
     }
