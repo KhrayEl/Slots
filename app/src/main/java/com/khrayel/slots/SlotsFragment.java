@@ -33,7 +33,8 @@ public class SlotsFragment extends Fragment implements DataOperations
         // TODO: Rename and change types of parameters
         private String mParam1;
         private String mParam2;
-        private  SlotsViewModel slotsviewmodel;
+        private SlotsViewModel slotsviewmodel;
+
         public SlotsFragment ()
             {
                 super(R.layout.fragment_slots);
@@ -80,7 +81,7 @@ public class SlotsFragment extends Fragment implements DataOperations
                 // Inflate the layout for this fragment
 //                return inflater.inflate(R.layout.fragment_slots, container, false);
 
-                 slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
+                slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
 
                 FragmentSlotsBinding binding = DataBindingUtil.inflate(
                         inflater, R.layout.fragment_slots, container, false);
@@ -89,10 +90,9 @@ public class SlotsFragment extends Fragment implements DataOperations
                 binding.setSlotsviewmodel(slotsviewmodel);
 
 
-                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(),this.getContext()));
+                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), this.getContext()));
 
                 return view;
-
 
 
 //                SlotsViewModel slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
@@ -104,13 +104,13 @@ public class SlotsFragment extends Fragment implements DataOperations
             }
 
         @Override
-        public void onDestroy()
+        public void onDestroy ()
             {
                 super.onDestroy();
-String jsonstring=slotsviewmodel.WriteFieldsToJsobString();
-                String filename=slotsviewmodel.getSlots_data_filename();
+                String jsonstring = slotsviewmodel.WriteFieldsToJsonString();
+                String filename = slotsviewmodel.getSlots_data_filename();
 
-                writeStringToFile(jsonstring,filename,this.getContext());
+                writeStringToFile(jsonstring, filename, this.getContext());
             }
 
     }

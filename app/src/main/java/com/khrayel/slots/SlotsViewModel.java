@@ -17,8 +17,6 @@ public class SlotsViewModel extends ViewModel implements Observable
         private SlotsModel slotsModel = new SlotsModel();
 
 
-
-
         public String getSlots_data_filename ()
             {
                 return this.slotsModel.getSlots_data_filename();
@@ -76,11 +74,11 @@ public class SlotsViewModel extends ViewModel implements Observable
             {
 
             }
-        public  void setFieldsFromString (String string)
+
+        public void setFieldsFromString (String string)
             {
                 slotsModel.setFieldsFromString(string);
             }
-
 
 
         private PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
@@ -105,7 +103,7 @@ public class SlotsViewModel extends ViewModel implements Observable
         void notifyChange ()
             {
                 callbacks.notifyCallbacks(this, 0, null);
-            //    WriteFieldsToJSON();
+                //    WriteFieldsToJSON();
             }
 
         /**
@@ -121,7 +119,7 @@ public class SlotsViewModel extends ViewModel implements Observable
             }
 
 
-        String WriteFieldsToJsobString ()
+        String WriteFieldsToJsonString ()
             {
                 //  JSONArray jsonArray = new JSONArray();
                 //jsonArray.put(record);
@@ -147,8 +145,8 @@ public class SlotsViewModel extends ViewModel implements Observable
 
 
                 //next, saves the file:
-               // slotsModel.getRepo().WriteJsonStringToFile(jsonString);
-return jsonString;
+                // slotsModel.getRepo().WriteJsonStringToFile(jsonString);
+                return jsonString;
             }
 
 

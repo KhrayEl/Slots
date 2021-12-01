@@ -41,9 +41,9 @@ public interface DataOperations
             {
 
                 String fileContents = data;
-String path=
-       // context.getFilesDir()+"/"+
-                filename;
+                String path =
+                        // context.getFilesDir()+"/"+
+                        filename;
 
 /*
                 PrintWriter out1 = null;
@@ -58,11 +58,10 @@ String path=
                     }
 */
 
-             try (FileOutputStream fos = context.openFileOutput(path, Context.MODE_PRIVATE))
+                try (FileOutputStream fos = context.openFileOutput(path, Context.MODE_PRIVATE))
                     {
                         fos.write(fileContents.getBytes());
-                    }
-             catch (FileNotFoundException e)
+                    } catch (FileNotFoundException e)
                     {
                         e.printStackTrace();
                     } catch (IOException e)
@@ -77,9 +76,11 @@ String path=
             {
                 FileInputStream fis = null;
 
-                try {
-                    fis = context.openFileInput(filename);
-                } catch (FileNotFoundException e) {
+                try
+                    {
+                        fis = context.openFileInput(filename);
+                    } catch (FileNotFoundException e)
+                    {
                         return "";
                     }
                 InputStreamReader inputStreamReader =

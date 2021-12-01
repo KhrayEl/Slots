@@ -25,15 +25,13 @@ public class MainActivity extends AppCompatActivity
                 if (savedInstanceState == null)
                     {
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                                ft.setReorderingAllowed(true);
-                                ft.replace(R.id.fragment_container_view, new GameSelector());
+                        ft.setReorderingAllowed(true);
+                        ft.replace(R.id.fragment_container_view, new GameSelector());
 //                                ft.add(R.id.fragment_container_view, SlotsFragment.class, null);
 //                                ft.addToBackStack(null);
-                                ft.commit();
+                        ft.commit();
                     }
             }
-
-
 
 
 //

@@ -25,12 +25,15 @@ public class SlotsModel extends BaseObservable
         public SlotsModel (
                           )
             {
-               // ReadData();
+                // ReadData();
             }
 
         private String slots_data_filename = "slots_data";
-        public String getSlots_data_filename(){return slots_data_filename;}
 
+        public String getSlots_data_filename ()
+            {
+                return slots_data_filename;
+            }
 
 
         // CURRENT SCORE
@@ -117,55 +120,56 @@ public class SlotsModel extends BaseObservable
             }
 
 
-        public  void setFieldsFromString (String string)
+        public void setFieldsFromString (String string)
             {
                 JSONObject json = null;
-                if (!string.equals("")){
-
-                    try
-                        {
-                            json = new JSONObject(string);
-                        } catch (JSONException e)
-                        {
-                            e.printStackTrace();
-                        }
-
-                    try
+                if (!string.equals(""))
                     {
-                        long record;
-                        record = json.getLong("record"); // TODO get RECORD value from json
-                        setRecord(record);
 
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
+                        try
+                            {
+                                json = new JSONObject(string);
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+                        try
+                            {
+                                long record;
+                                record = json.getLong("record"); // TODO get RECORD value from json
+                                setRecord(record);
+
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+
+                        try
+                            {
+                                long score;
+                                score = json.getLong("score"); // TODO get SCORE value from json
+                                setScore(score);
+
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+
+                        try
+                            {
+                                long bet;
+                                bet = json.getInt("bet"); // TODO get BET value from json
+                                setBet(bet);
+
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
                     }
-
-
-                try
-                    {
-                        long score;
-                        score = json.getLong("score"); // TODO get SCORE value from json
-                        setScore(score);
-
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                    }
-
-
-                try
-                    {
-                        long bet;
-                        bet = json.getInt("bet"); // TODO get BET value from json
-                        setBet(bet);
-
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                    }
-
-            }
 
 /*
         void ReadData ()
@@ -180,7 +184,5 @@ public class SlotsModel extends BaseObservable
 */
 
 
-
-
-
-    }}
+            }
+    }
