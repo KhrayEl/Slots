@@ -1,24 +1,28 @@
 package com.khrayel.slots;
 
-import android.renderscript.Sampler;
 import android.view.View;
 
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
-import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.ViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Type;
+import org.json.JSONObject;
 
 public class SlotsViewModel extends ViewModel implements Observable
     {
+
         private SlotsModel slotsModel = new SlotsModel();
 
+
+
+
+        public String getSlots_data_filename ()
+            {
+                return this.slotsModel.getSlots_data_filename();
+            }
 
         // CURRENT SCORE
         @Bindable
@@ -41,10 +45,9 @@ public class SlotsViewModel extends ViewModel implements Observable
             }
 
 
-
         // BET
         @Bindable
-        public long getCurrentBet ()
+        public long getBet ()
             {
                 return slotsModel.getBet();
             }
@@ -73,6 +76,10 @@ public class SlotsViewModel extends ViewModel implements Observable
             {
 
             }
+        public  void setFieldsFromString (String string)
+            {
+                slotsModel.setFieldsFromString(string);
+            }
 
 
 
@@ -98,7 +105,7 @@ public class SlotsViewModel extends ViewModel implements Observable
         void notifyChange ()
             {
                 callbacks.notifyCallbacks(this, 0, null);
-                slotsModel.WriteFieldsToJSON();
+            //    WriteFieldsToJSON();
             }
 
         /**
@@ -114,8 +121,44 @@ public class SlotsViewModel extends ViewModel implements Observable
             }
 
 
+        String WriteFieldsToJsobString ()
+            {
+                //  JSONArray jsonArray = new JSONArray();
+                //jsonArray.put(record);
 
 
+                JSONObject json = new JSONObject(); //creates main json
+                try
+                    {
+                        json.put("record", slotsModel.getRecord());
+                        json.put("score", slotsModel.getScore());
+                        json.put("bet", slotsModel.getBet());
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
 
+//                JSONObject valuesJson = new JSONObject(); //another object
+//                valuesJson.put("Car", "Maruti");
+//
+//                json.put("Values", valuesJson); //puts a json inside another
+
+                String jsonString = json.toString();
+
+
+                //next, saves the file:
+               // slotsModel.getRepo().WriteJsonStringToFile(jsonString);
+return jsonString;
+            }
+
+
+//        void ReadData ()
+//            {
+//                JSONArray json = slotsModel.getRepo().GetJsonFromFile();
+//                if (json != null)
+//                    {
+//                        slotsModel.setFieldsFromJSON(json);
+//                    }
+//            }
 
     }

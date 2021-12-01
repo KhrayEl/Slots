@@ -1,6 +1,8 @@
 package com.khrayel.slots;
 
+import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableInt;
@@ -17,15 +19,18 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SlotsModel extends BaseObservable implements DataOperations
+public class SlotsModel extends BaseObservable
     {
-        public SlotsModel ()
+
+        public SlotsModel (
+                          )
             {
-                ReadData();
+               // ReadData();
             }
 
-        // SAVED FILE WITH MODEL DATA
         private String slots_data_filename = "slots_data";
+        public String getSlots_data_filename(){return slots_data_filename;}
+
 
 
         // CURRENT SCORE
@@ -112,12 +117,23 @@ public class SlotsModel extends BaseObservable implements DataOperations
             }
 
 
-        void setFieldsFromJSON (JSONArray json)
+        public  void setFieldsFromString (String string)
             {
-                try
+                JSONObject json = null;
+                if (!string.equals("")){
+
+                    try
+                        {
+                            json = new JSONObject(string);
+                        } catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                    try
                     {
                         long record;
-                        record = json.getLong(0); // TODO get RECORD value from json
+                        record = json.getLong("record"); // TODO get RECORD value from json
                         setRecord(record);
 
                     } catch (JSONException e)
@@ -129,8 +145,8 @@ public class SlotsModel extends BaseObservable implements DataOperations
                 try
                     {
                         long score;
-                        score = json.getLong(1); // TODO get SCORE value from json
-                        setRecord(score);
+                        score = json.getLong("score"); // TODO get SCORE value from json
+                        setScore(score);
 
                     } catch (JSONException e)
                     {
@@ -141,8 +157,8 @@ public class SlotsModel extends BaseObservable implements DataOperations
                 try
                     {
                         long bet;
-                        bet = json.getInt(2); // TODO get BET value from json
-                        setRecord(bet);
+                        bet = json.getInt("bet"); // TODO get BET value from json
+                        setBet(bet);
 
                     } catch (JSONException e)
                     {
@@ -151,66 +167,20 @@ public class SlotsModel extends BaseObservable implements DataOperations
 
             }
 
-        void WriteFieldsToJSON ()
-            {
-                //  JSONArray jsonArray = new JSONArray();
-                //jsonArray.put(record);
-
-
-                JSONObject json = new JSONObject(); //creates main json
-                try
-                    {
-                        json.put("record", record);
-                        json.put("score", score);
-                        json.put("bet", current_bet);
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                    }
-
-//                JSONObject valuesJson = new JSONObject(); //another object
-//                valuesJson.put("Car", "Maruti");
-//
-//                json.put("Values", valuesJson); //puts a json inside another
-
-                String jsonString = json.toString();
-
-
-                //next, saves the file:
-
-                writeStringToFile(jsonString, slots_data_filename);
-
-            }
-
-        JSONArray GetJSONFromFile ()
-            {
-                String read_string = readStringFromFile(slots_data_filename);
-                JSONArray jsonArray = null;
-                JSONObject jsonObject = null;
-                if (!read_string.equals("")){
-
-                    try
-                    {
-                        jsonObject = new JSONObject(read_string);
-                    } catch (JSONException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    jsonArray.put(jsonObject);
-                }
-                return jsonArray;
-
-            }
-
-
+/*
         void ReadData ()
             {
-                JSONArray json = GetJSONFromFile();
+                JSONObject json = repo.GetJsonFromFile();
+                String string=
                 if (json != null)
                     {
-                        setFieldsFromJSON(json);
+                        setFieldsFromString(json);
                     }
             }
+*/
 
 
-    }
+
+
+
+    }}

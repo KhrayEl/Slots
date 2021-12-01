@@ -220,7 +220,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="@{Long.toString(slotsviewmodel.getCurrentBet())}"
+                        android:text="@{Long.toString(slotsviewmodel.getBet())}"
                         app:autoSizeTextType="uniform" />
                 </LinearLayout>
 

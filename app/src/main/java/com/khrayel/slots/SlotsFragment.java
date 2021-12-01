@@ -13,12 +13,16 @@ import android.view.ViewGroup;
 
 import com.khrayel.slots.databinding.FragmentSlotsBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SlotsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SlotsFragment extends Fragment
+public class SlotsFragment extends Fragment implements DataOperations
     {
 
         // TODO: Rename parameter arguments, choose names that match
@@ -29,7 +33,7 @@ public class SlotsFragment extends Fragment
         // TODO: Rename and change types of parameters
         private String mParam1;
         private String mParam2;
-
+        private  SlotsViewModel slotsviewmodel;
         public SlotsFragment ()
             {
                 super(R.layout.fragment_slots);
@@ -76,13 +80,17 @@ public class SlotsFragment extends Fragment
                 // Inflate the layout for this fragment
 //                return inflater.inflate(R.layout.fragment_slots, container, false);
 
-                SlotsViewModel slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
+                 slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
 
                 FragmentSlotsBinding binding = DataBindingUtil.inflate(
                         inflater, R.layout.fragment_slots, container, false);
                 View view = binding.getRoot();
                 //here data must be an instance of the class MarsDataProvider
                 binding.setSlotsviewmodel(slotsviewmodel);
+
+
+                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(),this.getContext()));
+
                 return view;
 
 
@@ -94,4 +102,15 @@ public class SlotsFragment extends Fragment
 //                binding.setSlotsviewmodel(slotsviewmodel);
 //                binding.setLifecycleOwner(this);
             }
+
+        @Override
+        public void onDestroy()
+            {
+                super.onDestroy();
+String jsonstring=slotsviewmodel.WriteFieldsToJsobString();
+                String filename=slotsviewmodel.getSlots_data_filename();
+
+                writeStringToFile(jsonstring,filename,this.getContext());
+            }
+
     }

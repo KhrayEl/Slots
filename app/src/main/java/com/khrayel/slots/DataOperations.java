@@ -1,6 +1,8 @@
 package com.khrayel.slots;
 
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -34,52 +36,63 @@ public interface DataOperations
 
         default void writeStringToFile (
                 String data, String filename
-                /*, Context context*/
+                , Context context
                                        )
             {
 
                 String fileContents = data;
+String path=
+       // context.getFilesDir()+"/"+
+                filename;
 
+/*
                 PrintWriter out1 = null;
                 try
                     {
-                        out1 = new PrintWriter(new FileWriter(filename));
+                        out1 = new PrintWriter(new FileWriter(path));
                         out1.write(data);
 
                     } catch (Exception ex)
                     {
                         System.out.println("error: " + ex.toString());
                     }
+*/
 
-
-//             try (FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE))
-//                    {
-//                        fos.write(fileContents.getBytes());
-//                    } catch (FileNotFoundException e)
-//                    {
-//                        e.printStackTrace();
-//                    } catch (IOException e)
-//                    {
-//                        e.printStackTrace();
-//                    }
+             try (FileOutputStream fos = context.openFileOutput(path, Context.MODE_PRIVATE))
+                    {
+                        fos.write(fileContents.getBytes());
+                    }
+             catch (FileNotFoundException e)
+                    {
+                        e.printStackTrace();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
 
             }
 
 
-        default String readStringFromFile (String filename)
+        default String readStringFromFile (String filename, Context context)
             {
-                File file=new File(filename);
-                if(!file.exists())
-                    {
+                FileInputStream fis = null;
+
+                try {
+                    fis = context.openFileInput(filename);
+                } catch (FileNotFoundException e) {
                         return "";
                     }
+                InputStreamReader inputStreamReader =
+                        new InputStreamReader(fis, StandardCharsets.UTF_8);
+
                 StringBuilder everything = new StringBuilder();
                 String line;
-                try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename)))
+                try (BufferedReader bufferedReader = new BufferedReader(inputStreamReader))
                     {
                         while ((line = bufferedReader.readLine()) != null)
                             {
                                 everything.append(line);
+
                             }
 
                     } catch (IOException e)
