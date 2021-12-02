@@ -48,6 +48,7 @@ public class SlotsModel extends BaseObservable
         public void setScore (long new_score)
             {
                 score.set(new_score);
+                setRecord(new_score);
             }
 
 
@@ -71,6 +72,7 @@ public class SlotsModel extends BaseObservable
 
 
         // BET
+        private long min_bet=10;
         private long default_bet = 10;
         private ObservableLong current_bet = new ObservableLong(default_bet);
 
@@ -81,7 +83,7 @@ public class SlotsModel extends BaseObservable
 
         private void setBet (long new_bet)
             {
-                current_bet.set(new_bet);
+                if (new_bet>=min_bet)current_bet.set(new_bet);
             }
 
         public void increaseBet_model ()

@@ -107,10 +107,18 @@ public class SlotsFragment extends Fragment implements DataOperations
         public void onDestroy ()
             {
                 super.onDestroy();
-                String jsonstring = slotsviewmodel.WriteFieldsToJsonString();
-                String filename = slotsviewmodel.getSlots_data_filename();
 
-                writeStringToFile(jsonstring, filename, this.getContext());
+                // write data to file
+                //writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), this.getContext());
             }
 
+        @Override
+        public void onStop ()
+            {
+                super.onStop();
+
+                // write data to file
+                writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), this.getContext());
+
+            }
     }

@@ -38,4 +38,12 @@ public class MainActivity extends AppCompatActivity
 //        TextView record = findViewById(R.id.text_record);
 //        String text=LoadDataFromFile();
 //        record.setText(text);
+
+
+        @Override
+        protected void onDestroy ()
+            {
+                super.onDestroy();
+
+            }
     }
