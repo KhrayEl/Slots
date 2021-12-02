@@ -5,7 +5,8 @@ public interface SlotsWinConditions
         enum Multiplier
             {
                 NO_MATCH(0),
-                TWO_MATCH(10);
+                TWO_MATCH(10),
+                THREE_MATCH(100);
 
                 public final int multiplier_value;
 
@@ -16,18 +17,23 @@ public interface SlotsWinConditions
             }
 
 
-
         default int GetResultMultiplier (int roll1, int roll2, int roll3)
             {
 
-                int multiplier_win = Multiplier.TWO_MATCH.multiplier_value;
-                int multiplier_loss = 0;
 
 
-                if (roll1 == roll2 || roll2 == roll3 || roll1 == roll3)
+                if (
+                        (roll1 == roll2 && roll2 != roll3 && roll1 != roll3) ||
+                        (roll1 != roll2 && roll2 == roll3 && roll1 != roll3) ||
+                        (roll1 != roll2 && roll2 != roll3 && roll1 == roll3)
+
+                )
                     {
-                        return multiplier_win;
+                        return Multiplier.TWO_MATCH.multiplier_value;
                     }
+                else if (roll1==roll2&&roll2==roll3)
+                    {return Multiplier.THREE_MATCH.multiplier_value;}
+
                 return Multiplier.NO_MATCH.multiplier_value;
             }
 
