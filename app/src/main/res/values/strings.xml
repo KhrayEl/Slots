@@ -7,10 +7,6 @@
     <string name="bet_text">BET:</string>
     <string name="bet_plus">+</string>
     <string name="bet_minus">-</string>
-    <string name="default_bet">10</string>
-    <string name="default_roll">7</string>
-    <string name="default_score">100</string>
-    <string name="default_record">0</string>
     <string name="select_slots_text">SLOTS</string>
 
 

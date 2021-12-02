@@ -19,7 +19,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class SlotsModel extends BaseObservable
+public class SlotsModel extends BaseObservable implements SlotsWinConditions
     {
 
         public SlotsModel (
@@ -72,7 +72,7 @@ public class SlotsModel extends BaseObservable
 
 
         // BET
-        private long min_bet=10;
+        private long min_bet = 1;
         private long default_bet = 10;
         private ObservableLong current_bet = new ObservableLong(default_bet);
 
@@ -83,43 +83,35 @@ public class SlotsModel extends BaseObservable
 
         private void setBet (long new_bet)
             {
-                if (new_bet>=min_bet)current_bet.set(new_bet);
+                if (new_bet >= min_bet &&
+                        new_bet <= score.get()
+                ) current_bet.set(new_bet);
             }
 
-        public void increaseBet_model ()
+
+
+
+        private int default_roll = 7;
+        ObservableInt roll1 = new ObservableInt(default_roll);
+        ObservableInt roll2 = new ObservableInt(default_roll);
+        ObservableInt roll3 = new ObservableInt(default_roll);
+
+        public int getRoll1 ()
             {
-                long new_bet = current_bet.get() + default_bet;
-                setBet(new_bet);
+                return roll1.get();
             }
 
-
-        public void decreaseBet_model ()
+        public int getRoll2 ()
             {
-                long new_bet = current_bet.get() - default_bet;
-                setBet(new_bet);
+                return roll2.get();
             }
 
-
-        private void Win ()
+        public int getRoll3 ()
             {
-                long new_score = score.get() + current_bet.get();
-                score.set(new_score);
-                setRecord(new_score);
+                return roll3.get();
             }
 
-        private void Loss ()
-            {
-                long new_score = score.get() - current_bet.get();
-                score.set(new_score);
-            }
 
-        public int[] GetRolls ()
-            {
-                int roll1 = ThreadLocalRandom.current().nextInt(0, 9 + 1);
-                int roll2 = ThreadLocalRandom.current().nextInt(0, 9 + 1);
-                int roll3 = ThreadLocalRandom.current().nextInt(0, 9 + 1);
-                return (new int[]{roll1, roll2, roll3});
-            }
 
 
         public void setFieldsFromString (String string)
@@ -185,6 +177,47 @@ public class SlotsModel extends BaseObservable
             }
 */
 
+
+            }
+
+        public void increaseBet_model ()
+            {
+                long new_bet = current_bet.get() + default_bet;
+                setBet(new_bet);
+            }
+
+
+        public void decreaseBet_model ()
+            {
+                long new_bet = current_bet.get() - default_bet;
+                setBet(new_bet);
+            }
+
+
+        private void Win (int multiplier)
+            {
+                long new_score = score.get() + current_bet.get()*multiplier;
+                setScore(new_score);
+            }
+
+        private void Loss ()
+            {
+                long new_score = score.get() - current_bet.get();
+                setScore(new_score);
+            }
+
+
+        public void GetNewRolls ()
+            {
+                roll1.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+                roll2.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+                roll3.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+
+                int mult=GetResultMultiplier(roll1.get(), roll2.get(), roll3.get());
+                if (mult>0)
+                    {
+                        Win(mult);
+                    } else Loss();
 
             }
     }

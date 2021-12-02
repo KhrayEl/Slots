@@ -1,12 +1,13 @@
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="slotsviewmodel"
             type="com.khrayel.slots.SlotsViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -40,19 +41,18 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/text_record"
+                        android:id="@+id/slots_text_record"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:textSize="24sp"
                         android:text="@{Long.toString(slotsviewmodel.getRecord)}"
-                        />
+                        android:textSize="24sp" />
                     <!--                                    android:text="@{Long.toString(slotsviewmodel.getRecord)}"
                     -->
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_score"
+                    android:id="@+id/slots_layout_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -67,20 +67,19 @@
                         app:autoSizeTextType="none" />
 
                     <TextView
-                        android:id="@+id/text_Score"
+                        android:id="@+id/slots_text_Score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:textSize="24sp"
-                        app:autoSizeTextType="none"
                         android:text="@{Long.toString(slotsviewmodel.getScore())}"
-                        />
+                        android:textSize="24sp"
+                        app:autoSizeTextType="none" />
                 </LinearLayout>
                 <!--
                 -->
 
                 <LinearLayout
-                    android:id="@+id/layout_winloss"
+                    android:id="@+id/slots_layout_winloss"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -88,7 +87,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textWinLoss"
+                        android:id="@+id/slots_textWinLoss"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
@@ -96,7 +95,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_rolls"
+                android:id="@+id/slots_layout_rolls"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
@@ -104,74 +103,70 @@
                 android:orientation="horizontal">
 
                 <Space
-                    android:id="@+id/space_roll_1"
+                    android:id="@+id/slots_space_roll_1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/text_roll1"
+                    android:id="@+id/slots_text_roll1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="7"
                     android:background="@drawable/roll_background"
                     android:elegantTextHeight="false"
                     android:gravity="center"
-                    android:text="@string/default_roll"
-                    android:layout_weight="7"
+                    android:text="@{Integer.toString(slotsviewmodel.getRoll1())}"
                     app:autoSizeTextType="uniform" />
 
                 <Space
-                    android:id="@+id/space_roll_2"
+                    android:id="@+id/slots_space_roll_2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/text_roll2"
+                    android:id="@+id/slots_text_roll2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="7"
                     android:background="@drawable/roll_background"
                     android:gravity="center"
-                    android:text="@string/default_roll"
-                    android:layout_weight="7"
+                    android:text="@{Integer.toString(slotsviewmodel.getRoll2())}"
                     app:autoSizeTextType="uniform" />
 
                 <Space
-                    android:id="@+id/space_roll_3"
+                    android:id="@+id/slots_space_roll_3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/text_roll3"
+                    android:id="@+id/slots_text_roll3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="7"
                     android:background="@drawable/roll_background"
                     android:gravity="center"
-                    android:layout_weight="7"
-                    android:text="@string/default_roll"
+                    android:text="@{Integer.toString(slotsviewmodel.getRoll3())}"
                     app:autoSizeTextType="uniform" />
 
                 <Space
                     android:id="@+id/space_roll_4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_bet"
+                android:id="@+id/slots_layout_bet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/layout_spin"
+                    android:id="@+id/slots_layout_spin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -184,12 +179,12 @@
                         android:layout_weight="1" />
 
                     <Button
-                        android:id="@+id/button_spin"
+                        android:id="@+id/slots_button_spin"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/spin_text"
-                        android:onClick="@{slotsviewmodel::OnClickSpin}"
+
                         />
                     <!--
                     -->
@@ -200,14 +195,14 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_bet_numbers"
+                    android:id="@+id/slots_layout_bet_numbers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_bet"
+                        android:id="@+id/slots_text_bet"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -215,7 +210,7 @@
                         app:autoSizeTextType="uniform" />
 
                     <TextView
-                        android:id="@+id/text_bet_number"
+                        android:id="@+id/slots_text_bet_number"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -225,7 +220,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_bet_buttons"
+                    android:id="@+id/slots_layout_bet_buttons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -233,41 +228,39 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/button_bet_plus"
+                        android:id="@+id/slots_button_bet_plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bet_plus"
-                        android:onClick="@{slotsviewmodel::BetIncrease}"
-                        />
+                        android:onClick="OnClick"
+                        android:text="@string/bet_plus" />
                     <!--                    -->
                     <Button
-                        android:id="@+id/button_bet_minus"
+                        android:id="@+id/slots_button_bet_minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/bet_minus"
-                        android:onClick="@{slotsviewmodel::BetDecrease}"
-                        />
+                        android:onClick="OnClick"
+                        android:text="@string/bet_minus" />
                     <!--                    -->
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_restart"
+                android:id="@+id/slots_layout_restart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:visibility="gone"
                 android:gravity="center"
-                >
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/slots_button_restart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:text="@string/restart_text"
-                    android:onClick="@{slotsviewmodel::OnClickRestart}"/>
+
+                    />
                 <!--            -->
 
             </LinearLayout>

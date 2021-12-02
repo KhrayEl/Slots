@@ -2,6 +2,7 @@ package com.khrayel.slots;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import com.khrayel.slots.databinding.FragmentSlotsBinding;
@@ -22,7 +24,7 @@ import org.json.JSONObject;
  * Use the {@link SlotsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SlotsFragment extends Fragment implements DataOperations
+public class SlotsFragment extends Fragment implements DataOperations, View.OnClickListener
     {
 
         // TODO: Rename parameter arguments, choose names that match
@@ -92,6 +94,9 @@ public class SlotsFragment extends Fragment implements DataOperations
 
                 slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), this.getContext()));
 
+                SetOnClickListeners(view);
+
+
                 return view;
 
 
@@ -121,4 +126,49 @@ public class SlotsFragment extends Fragment implements DataOperations
                 writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), this.getContext());
 
             }
+
+
+        void SetOnClickListeners (View view)
+            {
+                Button slots_button_bet_plus = (Button) view.findViewById(R.id.slots_button_bet_plus);
+                slots_button_bet_plus.setOnClickListener(this);
+
+                Button slots_button_bet_minus = (Button) view.findViewById(R.id.slots_button_bet_minus);
+                slots_button_bet_minus.setOnClickListener(this);
+
+                Button slots_button_spin = (Button) view.findViewById(R.id.slots_button_spin);
+                slots_button_spin.setOnClickListener(this);
+
+                Button slots_button_restart = (Button) view.findViewById(R.id.slots_button_restart);
+                slots_button_restart.setOnClickListener(this);
+            }
+
+        @Override
+        public void onClick (View v)
+            {
+                switch (v.getId())
+                    {
+                        case R.id.slots_button_bet_plus:
+                        {
+                            slotsviewmodel.BetIncrease();
+                            break;
+                        }
+                        case R.id.slots_button_bet_minus:
+                        {
+                            slotsviewmodel.BetDecrease();
+                            break;
+                        }
+                        case R.id.slots_button_spin:
+                        {
+                            slotsviewmodel.getNewRolls();
+                            break;
+                        }
+                        case R.id.slots_button_restart:
+                        {
+                            break;
+                        }
+
+                    }
+            }
+
     }

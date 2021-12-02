@@ -50,30 +50,25 @@ public class SlotsViewModel extends ViewModel implements Observable
                 return slotsModel.getBet();
             }
 
-        public void BetIncrease (View view)
+        // ROLLS
+        @Bindable
+        public int getRoll1 ()
             {
-                this.slotsModel.increaseBet_model();
-//                notifyPropertyChanged(BR.currentBet);
-                notifyChange();
+                return slotsModel.getRoll1();
             }
 
-        public void BetDecrease (View view)
+        @Bindable
+        public int getRoll2 ()
             {
-                slotsModel.decreaseBet_model();
-//                notifyPropertyChanged(BR.currentBet);
-                notifyChange();
+                return slotsModel.getRoll2();
             }
 
-        public void OnClickRestart (View view)
+        @Bindable
+        public int getRoll3 ()
             {
+                return slotsModel.getRoll3();
             }
 
-        ;
-
-        public void OnClickSpin (View view)
-            {
-
-            }
 
         public void setFieldsFromString (String string)
             {
@@ -158,5 +153,26 @@ public class SlotsViewModel extends ViewModel implements Observable
 //                        slotsModel.setFieldsFromJSON(json);
 //                    }
 //            }
+
+
+        public void BetIncrease ()
+            {
+                this.slotsModel.increaseBet_model();
+//                notifyPropertyChanged(BR.currentBet);
+                notifyChange();
+            }
+
+        public void BetDecrease ()
+            {
+                slotsModel.decreaseBet_model();
+//                notifyPropertyChanged(BR.currentBet);
+                notifyChange();
+            }
+
+        public void getNewRolls()
+            {
+                slotsModel.GetNewRolls();
+                notifyChange();
+            }
 
     }
