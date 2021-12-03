@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 import androidx.databinding.ObservableLong;
+import androidx.databinding.ObservableParcelable;
 import androidx.databinding.library.baseAdapters.BR;
 
 import org.json.JSONArray;
@@ -17,6 +19,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SlotsModel extends BaseObservable implements SlotsWinConditions
@@ -89,29 +92,38 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
             }
 
 
+        private SlotsRollsValues slotsRollsValues;
 
 
         private int default_roll = 7;
-        ObservableInt roll1 = new ObservableInt(default_roll);
-        ObservableInt roll2 = new ObservableInt(default_roll);
-        ObservableInt roll3 = new ObservableInt(default_roll);
 
-        public int getRoll1 ()
+//        private final ObservableField <String> roll1_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
+//        private final ObservableField <String> roll2_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
+//        private final ObservableField <String> roll3_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
+
+        public String getRoll1_string ()
             {
-                return roll1.get();
+                return Objects.requireNonNull(roll1.get()).string_as_html_entity;
             }
 
-        public int getRoll2 ()
+        public String getRoll2_string ()
             {
-                return roll2.get();
+                return Objects.requireNonNull(roll2.get()).string_as_html_entity;
             }
 
-        public int getRoll3 ()
+        public String getRoll3_string ()
             {
-                return roll3.get();
+                return Objects.requireNonNull(roll3.get()).string_as_html_entity;
             }
 
 
+        private final ObservableField<SlotsRollsValues> roll1 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
+        private final ObservableField<SlotsRollsValues> roll2 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
+        private final ObservableField<SlotsRollsValues> roll3 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
+
+//        //private int roll1 = SlotsRollsValues.ZERO.numeric;
+//        private ObservableInt roll2 = new ObservableInt(default_roll);
+//        private ObservableInt roll3 = new ObservableInt(default_roll);
 
 
         public void setFieldsFromString (String string)
@@ -182,42 +194,94 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
         public void increaseBet_model ()
             {
-                long new_bet = current_bet.get() + default_bet;
+                //long new_bet = current_bet.get() + default_bet;
+                long new_bet = current_bet.get();
+
+
+                long max = score.get();
+                int step = 1;
+
+                while (new_bet / 10 >= step)
+                    {
+                        step = step * 10;
+                    }
+                if (max >= new_bet + step)
+                    {
+                        new_bet = new_bet + step;
+                    }
+
                 setBet(new_bet);
             }
 
 
         public void decreaseBet_model ()
             {
-                long new_bet = current_bet.get() - default_bet;
-                setBet(new_bet);
+                //long new_bet = current_bet.get();
+                //setBet(new_bet);
+
+                if (current_bet.get() == 1 || current_bet.get() == 0)
+                    {
+                        //current_bet.set(new_bet);
+                        return;
+                    }
+
+                int step = 1;
+
+                while (current_bet.get() / 10 > step)
+                    {
+                        step = step * 10;
+                    }
+                current_bet.set(current_bet.get() - step);
+
             }
 
 
         private void Win (int multiplier)
             {
-                long new_score = score.get() + current_bet.get()*multiplier;
+                long new_score = score.get() + current_bet.get() * multiplier;
                 setScore(new_score);
             }
 
         private void Loss ()
             {
                 long new_score = score.get() - current_bet.get();
+                if (new_score != 0)
+                    {
+                        while (new_score < current_bet.get())
+                            {
+                                decreaseBet_model();
+                            }
+                    }
                 setScore(new_score);
             }
 
 
         public void GetNewRolls ()
             {
-                roll1.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
-                roll2.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
-                roll3.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+                roll1.set(SlotsRollsValues.getRandomRoll());
+                roll2.set(SlotsRollsValues.getRandomRoll());
+                roll3.set(SlotsRollsValues.getRandomRoll());
+//                roll1.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+//                roll2.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+//                roll3.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 
-                int mult=GetResultMultiplier(roll1.get(), roll2.get(), roll3.get());
-                if (mult>0)
+                int mult = GetResultMultiplier(
+                        Objects.requireNonNull(roll1.get()).numeric,
+                        Objects.requireNonNull(roll2.get()).numeric,
+                        Objects.requireNonNull(roll3.get()).numeric);
+                if (mult > 0)
                     {
                         Win(mult);
                     } else Loss();
 
+            }
+
+        public void ResetValues ()
+            {
+                score.set(default_score);
+                current_bet.set(default_bet);
+                roll1.set(SlotsRollsValues.getDefaultRoll());
+                roll2.set(SlotsRollsValues.getDefaultRoll());
+                roll3.set(SlotsRollsValues.getDefaultRoll());
             }
     }

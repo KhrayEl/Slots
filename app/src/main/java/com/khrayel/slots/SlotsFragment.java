@@ -165,6 +165,7 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                         }
                         case R.id.slots_button_restart:
                         {
+                            slotsviewmodel.Restart();
                             break;
                         }
 

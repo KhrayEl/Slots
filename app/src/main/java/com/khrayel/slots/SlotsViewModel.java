@@ -52,21 +52,34 @@ public class SlotsViewModel extends ViewModel implements Observable
 
         // ROLLS
         @Bindable
-        public int getRoll1 ()
+        public String getRoll1 ()
             {
-                return slotsModel.getRoll1();
+                return slotsModel.getRoll1_string();
             }
 
         @Bindable
-        public int getRoll2 ()
+        public String getRoll2 ()
             {
-                return slotsModel.getRoll2();
+                return slotsModel.getRoll2_string();
             }
 
         @Bindable
-        public int getRoll3 ()
+        public String getRoll3 ()
             {
-                return slotsModel.getRoll3();
+                return slotsModel.getRoll3_string();
+            }
+
+
+        @Bindable
+        public boolean getGameOver ()
+            {
+                boolean gameover = false;
+                if (slotsModel.getScore() <= 0)
+                    {
+                        gameover = true;
+                    }
+                notifyChange();
+                return gameover;
             }
 
 
@@ -169,10 +182,14 @@ public class SlotsViewModel extends ViewModel implements Observable
                 notifyChange();
             }
 
-        public void getNewRolls()
+        public void getNewRolls ()
             {
                 slotsModel.GetNewRolls();
                 notifyChange();
             }
 
+        public void Restart ()
+            {
+                slotsModel.ResetValues();
+            }
     }
