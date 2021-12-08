@@ -28,10 +28,12 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
         public SlotsModel (
                           )
             {
-                // ReadData();
             }
 
+
+
         private String slots_data_filename = "slots_data";
+
 
         public String getSlots_data_filename ()
             {
@@ -40,8 +42,8 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
 
         // CURRENT SCORE
-        private long default_score = 100;
-        private ObservableLong score = new ObservableLong(default_score);
+        private ObservableLong score = new ObservableLong(SlotsDefaultValues.default_score.getValue());
+
 
         public long getScore ()
             {
@@ -53,11 +55,11 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
                 score.set(new_score);
                 setRecord(new_score);
             }
-
+        private ObservableLong change_in_score = new ObservableLong(SlotsDefaultValues.default_change_in_score.getValue());
+        public long getChangeInScore(){return this.change_in_score.get();}
 
         // RECORD SCORE
-        private long default_record = 100;
-        private ObservableLong record = new ObservableLong(0);
+        private ObservableLong record = new ObservableLong(SlotsDefaultValues.default_record.getValue());
 
         public long getRecord ()
             {
@@ -66,7 +68,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
         public void setRecord (long new_record)
             {
-                if (new_record > default_score &&
+                if (new_record > SlotsDefaultValues.default_score.getValue() &&
                         record.get() < new_record)
                     {
                         record.set(new_record);
@@ -75,9 +77,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
 
         // BET
-        private long min_bet = 1;
-        private long default_bet = 10;
-        private ObservableLong current_bet = new ObservableLong(default_bet);
+        private ObservableLong current_bet = new ObservableLong(SlotsDefaultValues.default_bet.getValue());
 
         public long getBet ()
             {
@@ -86,7 +86,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
         private void setBet (long new_bet)
             {
-                if (new_bet >= min_bet &&
+                if (new_bet >= SlotsDefaultValues.min_bet.getValue() &&
                         new_bet <= score.get()
                 ) current_bet.set(new_bet);
             }
@@ -95,7 +95,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
         private SlotsRollsValues slotsRollsValues;
 
 
-        private int default_roll = 7;
+
 
 //        private final ObservableField <String> roll1_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
 //        private final ObservableField <String> roll2_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
@@ -219,7 +219,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
                 //long new_bet = current_bet.get();
                 //setBet(new_bet);
 
-                if (current_bet.get() == 1 || current_bet.get() == 0)
+                if (current_bet.get() == SlotsDefaultValues.min_bet.getValue() || current_bet.get() == 0)
                     {
                         //current_bet.set(new_bet);
                         return;
@@ -239,6 +239,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
         private void Win (int multiplier)
             {
                 long new_score = score.get() + current_bet.get() * multiplier;
+                change_in_score.set(new_score-score.get());
                 setScore(new_score);
             }
 
@@ -252,15 +253,28 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
                                 decreaseBet_model();
                             }
                     }
+                change_in_score.set(new_score-score.get());
                 setScore(new_score);
             }
 
 
         public void GetNewRolls ()
             {
-                roll1.set(SlotsRollsValues.getRandomRoll());
-                roll2.set(SlotsRollsValues.getRandomRoll());
-                roll3.set(SlotsRollsValues.getRandomRoll());
+                long temp_score=score.get();
+
+                int upto=SlotsDefaultValues.DEFAULT_ROLL_MAX.getValue();
+                int divisor= SlotsDefaultValues.SCORE_DIVISOR_FOR_ROLL_INCREMENT.getValue();
+                while (temp_score/divisor>=divisor)
+                    {
+                        temp_score=temp_score/divisor;
+                        upto=upto+SlotsDefaultValues.ROLL_INCREMENT.getValue();
+                    }
+
+
+
+                roll1.set(SlotsRollsValues.getRandomRoll(upto));
+                roll2.set(SlotsRollsValues.getRandomRoll(upto));
+                roll3.set(SlotsRollsValues.getRandomRoll(upto));
 //                roll1.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 //                roll2.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 //                roll3.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
@@ -278,10 +292,11 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
         public void ResetValues ()
             {
-                score.set(default_score);
-                current_bet.set(default_bet);
+                score.set(SlotsDefaultValues.default_score.getValue());
+                current_bet.set(SlotsDefaultValues.default_bet.getValue());
                 roll1.set(SlotsRollsValues.getDefaultRoll());
                 roll2.set(SlotsRollsValues.getDefaultRoll());
                 roll3.set(SlotsRollsValues.getDefaultRoll());
+                change_in_score.set(SlotsDefaultValues.default_change_in_score.getValue());
             }
     }

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="roll_size">75sp</dimen>
+    <dimen name="reel_height">350sp</dimen>
+    <dimen name="reel_width">50sp</dimen>
+    <dimen name="main_text_size">24sp</dimen>
+    <dimen name="game_selector_text_size">45sp</dimen>
+
+    <dimen name="bet_button_width">60sp</dimen>
+    <dimen name="bet_button_height">60sp</dimen>
 </resources>

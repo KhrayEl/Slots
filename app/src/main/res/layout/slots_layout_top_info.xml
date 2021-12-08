@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="slotsviewmodel"
+            type="com.khrayel.slots.SlotsViewModel" />
+        <import type="android.view.View" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/record_text"
+                android:textSize="@dimen/main_text_size" />
+
+            <TextView
+                android:id="@+id/slots_text_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{Long.toString(slotsviewmodel.getRecord)}"
+                android:textSize="@dimen/main_text_size" />
+            <!--                                    android:text="@{Long.toString(slotsviewmodel.getRecord)}"
+            -->
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/slots_layout_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score_text"
+                android:textSize="@dimen/main_text_size"
+                 />
+
+            <TextView
+                android:id="@+id/slots_text_Score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="@{Long.toString(slotsviewmodel.getScore())}"
+                android:textSize="@dimen/main_text_size"
+                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/slots_layout_winloss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="@dimen/main_text_size">
+
+            <TextView
+                android:id="@+id/slots_textWinLoss"
+                android:layout_width="match_parent"
+                android:layout_height="30sp"
+                android:gravity="end"
+                android:text="@{slotsviewmodel.getChangeInScore()&gt;0?`+`+Long.toString(slotsviewmodel.getChangeInScore()):Long.toString(slotsviewmodel.getChangeInScore())}"
+                android:textColor="@{slotsviewmodel.getChangeInScore()&gt;0?@color/green:@color/red}"
+                android:visibility="@{slotsviewmodel.getChangeInScore()==0?  View.INVISIBLE : View.VISIBLE}"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

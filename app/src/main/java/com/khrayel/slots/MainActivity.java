@@ -1,10 +1,7 @@
 package com.khrayel.slots;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
@@ -17,7 +14,7 @@ public class MainActivity extends FragmentActivity
             {
 
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_main);
+                setContentView(R.layout.main_activity);
 
                 if (getActionBar() != null)
                     {

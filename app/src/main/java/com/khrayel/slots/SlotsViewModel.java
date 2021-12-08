@@ -33,6 +33,10 @@ public class SlotsViewModel extends ViewModel implements Observable
 //            {
 //                this.slotsModel.setScore(new_score);
 //            }
+public long getChangeInScore ()
+    {
+        return this.slotsModel.getChangeInScore();
+    }
 
 
         // RECORD SCORE

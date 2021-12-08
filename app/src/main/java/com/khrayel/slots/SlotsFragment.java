@@ -2,7 +2,6 @@ package com.khrayel.slots;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,11 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-import com.khrayel.slots.databinding.FragmentSlotsBinding;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.khrayel.slots.databinding.SlotsFragmentBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,7 +34,7 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
         public SlotsFragment ()
             {
-                super(R.layout.fragment_slots);
+                super(R.layout.slots_fragment);
 
                 // Required empty public constructor
             }
@@ -85,8 +80,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
 
-                FragmentSlotsBinding binding = DataBindingUtil.inflate(
-                        inflater, R.layout.fragment_slots, container, false);
+                SlotsFragmentBinding binding = DataBindingUtil.inflate(
+                        inflater, R.layout.slots_fragment, container, false);
                 View view = binding.getRoot();
                 //here data must be an instance of the class MarsDataProvider
                 binding.setSlotsviewmodel(slotsviewmodel);

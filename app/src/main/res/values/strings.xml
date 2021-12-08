@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Slots</string>
-    <string name="score_text">SCORE:</string>
-    <string name="record_text">RECORD:</string>
-    <string name="restart_text">RESTART</string>
-    <string name="spin_text">&#128514; SPIN</string>
+    <string name="score_text">SCORE: </string>
+    <string name="record_text">RECORD: </string>
+    <string name="restart_text">&#128557; RESTART &#128557;</string>
+    <string name="spin_text">&#128178; SPIN &#128178;</string>
     <string name="bet_text">BET:</string>
-    <string name="bet_plus">+</string>
-    <string name="bet_minus">-</string>
-    <string name="select_slots_text">SLOTS</string>
+    <string name="bet_plus">&#10133;</string>
+    <string name="bet_minus">&#10134;</string>
+    <string name="select_slots_text">&#127920; SLOTS &#127920;</string>
 
 
 </resources>

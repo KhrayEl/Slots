@@ -7,15 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 public class GameSelector extends Fragment implements View.OnClickListener
     {
         public GameSelector ()
             {
-                super(R.layout.fragment_game_selector);
+                super(R.layout.main_game_selector_fragment);
 
             }
 
@@ -36,7 +34,7 @@ public class GameSelector extends Fragment implements View.OnClickListener
                                   Bundle savedInstanceState)
             {
 
-                View v = inflater.inflate(R.layout.fragment_game_selector, container, false);
+                View v = inflater.inflate(R.layout.main_game_selector_fragment, container, false);
 
                 Button b = (Button) v.findViewById(R.id.StartButton);
                 b.setOnClickListener(this);

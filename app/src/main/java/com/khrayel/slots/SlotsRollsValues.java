@@ -89,6 +89,11 @@ public enum SlotsRollsValues
             {
                 return VALUES.get(RANDOM.nextInt(SIZE));
             }
+        public static SlotsRollsValues getRandomRoll (int upto)
+            {
+                return VALUES.get(RANDOM.nextInt(upto));
+            }
+
         public static SlotsRollsValues getDefaultRoll ()
             {
                 return VALUES.get(0); // TODO make a default roll to get
