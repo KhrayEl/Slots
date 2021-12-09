@@ -13,9 +13,11 @@
             type="com.khrayel.slots.SlotsViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,34 +27,54 @@
         >
 
         <include
+            android:id="@+id/slots_layout_top_info"
             layout="@layout/slots_layout_top_info"
             app:slotsviewmodel="@{slotsviewmodel}"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/slots_layout_reels"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
             />
 
         <include
+            android:id="@+id/slots_layout_reels"
             layout="@layout/slots_layout_reels"
             app:slotsviewmodel="@{slotsviewmodel}"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/slots_layout_top_info"
             />
 
         <include
+            android:id="@+id/slots_layout_bets"
             layout="@layout/slots_layout_bets"
             android:visibility="@{slotsviewmodel.getGameOver() ?  View.GONE:View.VISIBLE}"
             app:slotsviewmodel="@{slotsviewmodel}"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slots_layout_reels"
             />
-
         <include
+            android:id="@+id/slots_layout_restart"
             layout="@layout/slots_layout_restart"
             android:visibility="@{slotsviewmodel.getGameOver() ?  View.VISIBLE:View.GONE}"
             app:slotsviewmodel="@{slotsviewmodel}"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slots_layout_reels"
             />
+    </androidx.constraintlayout.widget.ConstraintLayout
 
-    </LinearLayout>
+        >
 </layout>
