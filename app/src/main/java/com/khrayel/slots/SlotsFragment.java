@@ -6,10 +6,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.khrayel.slots.databinding.SlotsFragmentBinding;
@@ -31,6 +33,9 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
         private String mParam1;
         private String mParam2;
         private SlotsViewModel slotsviewmodel;
+        private final Handler delay_handler = new Handler();
+
+        private int reel_anim_delay=100;
 
         public SlotsFragment ()
             {
@@ -156,10 +161,91 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                         case R.id.slots_button_spin:
                         {
                             slotsviewmodel.getNewRolls();
+
+                            int delay = reel_anim_delay;
+
+                            View parent = (View) v.getParent().getParent().getParent();
+                            TextView tv1 = parent.findViewById(R.id.slots_text_reel1);
+                            TextView tv2 = parent.findViewById(R.id.slots_text_reel2);
+                            TextView tv3 = parent.findViewById(R.id.slots_text_reel3);
+
+
+                            tv1.setTextColor(getResources().getColor(R.color.transparent));
+                            tv2.setTextColor(getResources().getColor(R.color.transparent));
+                            tv3.setTextColor(getResources().getColor(R.color.transparent));
+
+                            Button btn_spin = parent.findViewById(R.id.slots_button_spin);
+                            Button btn_plus = parent.findViewById(R.id.slots_button_bet_plus);
+                            Button btn_minus = parent.findViewById(R.id.slots_button_bet_minus);
+
+                            btn_spin.setClickable(false);
+                            btn_plus.setClickable(false);
+                            btn_minus.setClickable(false);
+
+                            View bet_layout = parent.findViewById(R.id.slots_layout_bets);
+                            View restart_layout = parent.findViewById(R.id.slots_layout_restart);
+
+
+                            delay_handler.postDelayed(new Runnable()
+                                {
+
+                                    public void run ()
+                                        {
+                                            tv1.setTextColor(getResources().getColor(R.color.black));
+
+                                        }
+                                }, delay * 1L);
+
+
+                            delay_handler.postDelayed(new Runnable()
+                                {
+
+                                    public void run ()
+                                        {
+                                            tv2.setTextColor(getResources().getColor(R.color.black));
+
+                                        }
+                                }, delay * 2L);
+
+                            delay_handler.postDelayed(new Runnable()
+                                {
+
+                                    public void run ()
+                                        {
+                                            tv3.setTextColor(getResources().getColor(R.color.black));
+
+                                        }
+                                }, delay * 3L);
+
+
+                            delay_handler.postDelayed(new Runnable()
+                                {
+                                    public void run ()
+                                        {
+                                            btn_spin.setClickable(true);
+                                            btn_plus.setClickable(true);
+                                            btn_minus.setClickable(true);
+
+                                            if (slotsviewmodel.getGameOver())
+                                                {
+                                                    bet_layout.setVisibility(View.GONE);
+                                                    restart_layout.setVisibility(View.VISIBLE);
+                                                }
+                                        }
+                                }, delay * 4L);
+
+
                             break;
                         }
                         case R.id.slots_button_restart:
                         {
+                            View parent = (View) v.getParent().getParent().getParent();
+                            View bet_layout = parent.findViewById(R.id.slots_layout_bets);
+                            View restart_layout = parent.findViewById(R.id.slots_layout_restart);
+
+                            bet_layout.setVisibility(View.VISIBLE);
+                            restart_layout.setVisibility(View.GONE);
+
                             slotsviewmodel.Restart();
                             break;
                         }

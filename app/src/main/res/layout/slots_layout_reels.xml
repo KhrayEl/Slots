@@ -41,7 +41,7 @@
          />
 
     <TextView
-        android:id="@+id/slots_text_roll2"
+        android:id="@+id/slots_text_reel2"
         android:layout_width="@dimen/slots_reel_width"
         android:layout_height="@dimen/slots_reel_height"
         android:textSize="@dimen/slots_roll_size"
@@ -61,7 +61,7 @@
          />
 
     <TextView
-        android:id="@+id/slots_text_roll3"
+        android:id="@+id/slots_text_reel3"
         android:layout_width="@dimen/slots_reel_width"
         android:layout_height="@dimen/slots_reel_height"
         android:textSize="@dimen/slots_roll_size"

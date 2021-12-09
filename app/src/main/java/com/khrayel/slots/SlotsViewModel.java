@@ -74,8 +74,11 @@ public long getChangeInScore ()
             }
 
 
+        /**
+         * @return true if gameover
+         */
         @Bindable
-        public boolean getGameOver ()
+        public boolean getGameOver () //
             {
                 boolean gameover = false;
                 if (slotsModel.getScore() <= 0)
