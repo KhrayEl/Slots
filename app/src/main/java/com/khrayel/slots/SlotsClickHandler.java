@@ -87,9 +87,9 @@ public class SlotsClickHandler
                 //View view = parent.findViewById(R.id.slots_text_reel1);
 
 
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_1), slotsViewModel, handler, 1);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), slotsViewModel, handler, 2);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), slotsViewModel, handler, 3);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_1), slotsViewModel.getRoll1(), handler, 1);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), slotsViewModel.getRoll2(), handler, 2);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), slotsViewModel.getRoll3(), handler, 3);
 
 
 //                handler.postDelayed(new Runnable()
@@ -124,7 +124,7 @@ public class SlotsClickHandler
 
             }
 
-        private static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, SlotsViewModel slotsViewModel)
+        private static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add,String rolled_value)
             {
                 for (int i = 0; i < number_of_children_to_add; i++)
                     {
@@ -140,7 +140,8 @@ public class SlotsClickHandler
                                 tv.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
                             } else
                             {
-                                tv.setText(slotsViewModel.getRoll1());
+
+                                tv.setText(rolled_value);
                                 tv.setBackgroundColor(parent.getResources().getColor(R.color.green));
                             }
 
@@ -176,7 +177,7 @@ public class SlotsClickHandler
                 slotsViewModel.Restart();
             }
 
-        private static void StartReel (ScrollView scrollView, SlotsViewModel slotsViewModel, Handler handler, int reel_multiplier)
+        private static void StartReel (ScrollView scrollView, String rolled_value, Handler handler, int reel_multiplier)
             {
                 LinearLayout linearLayout_reel = (LinearLayout) scrollView.getChildAt(0);
                 int childs_to_add = 100;
@@ -184,7 +185,7 @@ public class SlotsClickHandler
                 int reel_anim_delay = 50;
 
 
-                AddChildrenToReel(linearLayout_reel, childs_to_add * reel_multiplier, slotsViewModel);
+                AddChildrenToReel(linearLayout_reel, childs_to_add * reel_multiplier, rolled_value);
 
                 int index_of_child_to_focus = linearLayout_reel.getChildCount() - 3;
 
