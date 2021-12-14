@@ -1,4 +1,4 @@
-package com.khrayel.slots;
+package com.khrayel.main_app;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.khrayel.slots.R;
+import com.khrayel.slots.SlotsFragment;
 
 public class GameSelector extends Fragment implements View.OnClickListener
     {
@@ -28,6 +31,17 @@ public class GameSelector extends Fragment implements View.OnClickListener
                 ;
             }
 
+        public void ChangeToTests ()
+            {
+                FragmentManager fm = getParentFragmentManager();
+
+                fm.beginTransaction()
+                        .replace(R.id.fragment_container_view, new TestsFragment())
+                        .addToBackStack(null)  // uncomment this line if you want to be able to return to the prev. fragment with "back" button
+                        .commit()
+                ;
+            }
+
 
         @Override
         public View onCreateView (LayoutInflater inflater, ViewGroup container,
@@ -36,8 +50,12 @@ public class GameSelector extends Fragment implements View.OnClickListener
 
                 View v = inflater.inflate(R.layout.main_game_selector_fragment, container, false);
 
-                Button b = (Button) v.findViewById(R.id.StartButton);
-                b.setOnClickListener(this);
+                Button slots_StartButton = (Button) v.findViewById(R.id.slots_StartButton);
+                slots_StartButton.setOnClickListener(this);
+                Button tests_StartButton = (Button) v.findViewById(R.id.tests_StartButton);
+                tests_StartButton.setOnClickListener(this);
+
+
                 return v;
             }
 
@@ -46,10 +64,18 @@ public class GameSelector extends Fragment implements View.OnClickListener
             {
                 switch (v.getId())
                     {
-                        case R.id.StartButton:
+                        case R.id.slots_StartButton:
+                        {
                             ChangeToSlots();
                             break;
+                        }
+                        case R.id.tests_StartButton:
+                        {
+                            ChangeToTests();
+                            break;
+                        }
                     }
+
             }
     }
 

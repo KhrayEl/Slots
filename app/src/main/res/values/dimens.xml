@@ -7,7 +7,6 @@
     <dimen name="game_selector_text_size">45sp</dimen>
 
     <dimen name="slots_top_info_height">100sp</dimen>
-    <dimen name="slots_reels_height">500sp</dimen>
     <dimen name="slots_bottom_bar_height">130sp</dimen>
 
 

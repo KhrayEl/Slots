@@ -72,8 +72,9 @@
                 android:gravity="end"
                 android:text="@{slotsviewmodel.getChangeInScore()&gt;0?`+`+Long.toString(slotsviewmodel.getChangeInScore()):Long.toString(slotsviewmodel.getChangeInScore())}"
                 android:textColor="@{slotsviewmodel.getChangeInScore()&gt;0?@color/green:@color/red}"
-                android:visibility="@{slotsviewmodel.getChangeInScore()==0?  View.INVISIBLE : View.VISIBLE}"
-                />
+                android:visibility="invisible"/>
+<!--            android:visibility="@{slotsviewmodel.getChangeInScore()==0?  View.INVISIBLE : View.VISIBLE}"-->
+
         </LinearLayout>
 
     </LinearLayout>

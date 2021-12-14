@@ -1,9 +1,12 @@
-package com.khrayel.slots;
+package com.khrayel.main_app;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+
+import com.khrayel.main_app.GameSelector;
+import com.khrayel.slots.R;
 
 
 public class MainActivity extends FragmentActivity

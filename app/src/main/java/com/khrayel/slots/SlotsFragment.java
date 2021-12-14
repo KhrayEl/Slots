@@ -8,13 +8,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 
 import com.khrayel.slots.databinding.SlotsFragmentBinding;
+
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,9 +37,6 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
         private String mParam1;
         private String mParam2;
         private SlotsViewModel slotsviewmodel;
-        private final Handler delay_handler = new Handler();
-
-        private int reel_anim_delay=100;
 
         public SlotsFragment ()
             {
@@ -96,6 +97,10 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 SetOnClickListeners(view);
 
+                SetReelCentered(view.findViewById(R.id.slots_layout_scroll_1));
+                SetReelCentered(view.findViewById(R.id.slots_layout_scroll_2));
+                SetReelCentered(view.findViewById(R.id.slots_layout_scroll_3));
+
 
                 return view;
 
@@ -143,114 +148,32 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 slots_button_restart.setOnClickListener(this);
             }
 
+        void SetReelCentered (ScrollView scroll)
+            {
+                scroll.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch (View v, MotionEvent event) {
+                        return true;
+                    }
+                });
+                new Handler().post(new Runnable()
+                    {
+                        @Override
+                        public void run ()
+                            {
+                                ViewGroup viewGroup = (ViewGroup) scroll.getChildAt(0);
+                                View view=viewGroup.getChildAt(2);
+                                int vTop = view.getTop();
+                                int vBottom = view.getBottom();
+                                int sHeight = scroll.getBottom();
+                                scroll.scrollTo(0, ((vTop + vBottom - sHeight) / 2));
+                            }
+                    });
+            }
+
         @Override
         public void onClick (View v)
             {
-                switch (v.getId())
-                    {
-                        case R.id.slots_button_bet_plus:
-                        {
-                            slotsviewmodel.BetIncrease();
-                            break;
-                        }
-                        case R.id.slots_button_bet_minus:
-                        {
-                            slotsviewmodel.BetDecrease();
-                            break;
-                        }
-                        case R.id.slots_button_spin:
-                        {
-                            slotsviewmodel.getNewRolls();
-
-                            int delay = reel_anim_delay;
-
-                            View parent = (View) v.getParent().getParent().getParent();
-                            TextView tv1 = parent.findViewById(R.id.slots_text_reel1);
-                            TextView tv2 = parent.findViewById(R.id.slots_text_reel2);
-                            TextView tv3 = parent.findViewById(R.id.slots_text_reel3);
-
-
-                            tv1.setTextColor(getResources().getColor(R.color.transparent));
-                            tv2.setTextColor(getResources().getColor(R.color.transparent));
-                            tv3.setTextColor(getResources().getColor(R.color.transparent));
-
-                            Button btn_spin = parent.findViewById(R.id.slots_button_spin);
-                            Button btn_plus = parent.findViewById(R.id.slots_button_bet_plus);
-                            Button btn_minus = parent.findViewById(R.id.slots_button_bet_minus);
-
-                            btn_spin.setClickable(false);
-                            btn_plus.setClickable(false);
-                            btn_minus.setClickable(false);
-
-                            View bet_layout = parent.findViewById(R.id.slots_layout_bets);
-                            View restart_layout = parent.findViewById(R.id.slots_layout_restart);
-
-
-                            delay_handler.postDelayed(new Runnable()
-                                {
-
-                                    public void run ()
-                                        {
-                                            tv1.setTextColor(getResources().getColor(R.color.black));
-
-                                        }
-                                }, delay * 1L);
-
-
-                            delay_handler.postDelayed(new Runnable()
-                                {
-
-                                    public void run ()
-                                        {
-                                            tv2.setTextColor(getResources().getColor(R.color.black));
-
-                                        }
-                                }, delay * 2L);
-
-                            delay_handler.postDelayed(new Runnable()
-                                {
-
-                                    public void run ()
-                                        {
-                                            tv3.setTextColor(getResources().getColor(R.color.black));
-
-                                        }
-                                }, delay * 3L);
-
-
-                            delay_handler.postDelayed(new Runnable()
-                                {
-                                    public void run ()
-                                        {
-                                            btn_spin.setClickable(true);
-                                            btn_plus.setClickable(true);
-                                            btn_minus.setClickable(true);
-
-                                            if (slotsviewmodel.getGameOver())
-                                                {
-                                                    bet_layout.setVisibility(View.GONE);
-                                                    restart_layout.setVisibility(View.VISIBLE);
-                                                }
-                                        }
-                                }, delay * 4L);
-
-
-                            break;
-                        }
-                        case R.id.slots_button_restart:
-                        {
-                            View parent = (View) v.getParent().getParent().getParent();
-                            View bet_layout = parent.findViewById(R.id.slots_layout_bets);
-                            View restart_layout = parent.findViewById(R.id.slots_layout_restart);
-
-                            bet_layout.setVisibility(View.VISIBLE);
-                            restart_layout.setVisibility(View.GONE);
-
-                            slotsviewmodel.Restart();
-                            break;
-                        }
-
-                    }
+                SlotsClickHandler.HandleOnClick(v, slotsviewmodel);
             }
-
     }

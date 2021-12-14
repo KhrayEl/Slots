@@ -43,7 +43,7 @@
             android:id="@+id/slots_layout_reels"
             layout="@layout/slots_layout_reels"
             app:slotsviewmodel="@{slotsviewmodel}"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/slots_reel_height"
             android:layout_width="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
