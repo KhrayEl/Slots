@@ -52,8 +52,9 @@ public class GameSelector extends Fragment implements View.OnClickListener
 
                 Button slots_StartButton = (Button) v.findViewById(R.id.slots_StartButton);
                 slots_StartButton.setOnClickListener(this);
-                Button tests_StartButton = (Button) v.findViewById(R.id.tests_StartButton);
-                tests_StartButton.setOnClickListener(this);
+
+//                Button tests_StartButton = (Button) v.findViewById(R.id.tests_StartButton);
+//                tests_StartButton.setOnClickListener(this);
 
 
                 return v;
@@ -69,11 +70,11 @@ public class GameSelector extends Fragment implements View.OnClickListener
                             ChangeToSlots();
                             break;
                         }
-                        case R.id.tests_StartButton:
-                        {
-                            ChangeToTests();
-                            break;
-                        }
+//                        case R.id.tests_StartButton:
+//                        {
+//                            ChangeToTests();
+//                            break;
+//                        }
                     }
 
             }
