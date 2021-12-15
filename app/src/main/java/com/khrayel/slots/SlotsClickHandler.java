@@ -149,7 +149,7 @@ public class SlotsClickHandler
                             {
 
                                 tv.setText(rolled_value);
-                                tv.setBackgroundColor(parent.getResources().getColor(R.color.green));
+                         //       tv.setBackgroundColor(parent.getResources().getColor(R.color.green));
                             }
 
                         parent.addView(tv);

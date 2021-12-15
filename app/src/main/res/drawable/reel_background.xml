@@ -1,0 +1,34 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle"
+            >
+            <solid android:color="@color/gainsboro" />
+
+            <stroke
+                android:width="@dimen/slots_reel_outline_size"
+                android:color="@android:color/black" />
+        </shape>
+
+    </item>
+
+    <item
+        android:top="420px"
+        android:bottom="370px"
+        android:left="@dimen/slots_reel_outline_size"
+        android:right="@dimen/slots_reel_outline_size">
+        <shape
+            android:shape="rectangle">
+
+            <solid android:color="@color/silver" />
+
+            <stroke
+                android:color="@color/green" />
+
+        </shape>
+
+    </item>
+
+
+
+
+</layer-list>
