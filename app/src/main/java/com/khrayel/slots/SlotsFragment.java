@@ -154,12 +154,12 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
         void SetReelCentered (ScrollView scroll)
             {
-//                scroll.setOnTouchListener(new View.OnTouchListener() {
-//                    @Override
-//                    public boolean onTouch (View v, MotionEvent event) {
-//                        return true;
-//                    }
-//                });
+                scroll.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch (View v, MotionEvent event) {
+                        return true;
+                    }
+                });
                 new Handler().post(new Runnable()
                     {
                         @Override
