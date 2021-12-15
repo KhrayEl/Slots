@@ -53,10 +53,7 @@ public class SlotsClickHandler
         private static void HandleSpin (@NonNull View v, @NonNull SlotsViewModel slotsViewModel)
             {
                 final Handler handler = new Handler();
-
-
                 slotsViewModel.getNewRolls();
-
                 ViewGroup parent = (ViewGroup) v.getParent().getParent().getParent();
 
 //                TextView tv1 = parent.findViewById(R.id.slots_text_reel1);
@@ -82,8 +79,12 @@ public class SlotsClickHandler
                 Button btn_spin = parent.findViewById(R.id.slots_button_spin);
                 Button btn_plus = parent.findViewById(R.id.slots_button_bet_plus);
                 Button btn_minus = parent.findViewById(R.id.slots_button_bet_minus);
+
                 TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
                 tv_score_change.setVisibility(View.INVISIBLE);
+                TextView tv_score=parent.findViewById(R.id.slots_text_Score);
+                TextView tv_record=parent.findViewById(R.id.slots_text_record);
+
 
 
                 btn_spin.setClickable(false);
@@ -121,7 +122,8 @@ public class SlotsClickHandler
                                         bet_layout.setVisibility(View.GONE);
                                         restart_layout.setVisibility(View.VISIBLE);
                                     }
-
+                                tv_score.setText(String.format(Long.toString(slotsViewModel.getScore())));
+                                tv_record.setText(String.format(Long.toString(slotsViewModel.getRecord())));
                             }
                     }, 1700);
 
