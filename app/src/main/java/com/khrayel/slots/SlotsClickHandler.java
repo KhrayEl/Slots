@@ -204,7 +204,14 @@ public class SlotsClickHandler
                 bet_layout.setVisibility(View.VISIBLE);
                 restart_layout.setVisibility(View.GONE);
 
+
+
                 slotsViewModel.Restart();
+                TextView tv_score=parent.findViewById(R.id.slots_text_Score);
+                tv_score.setText(String.format(Long.toString(slotsViewModel.getScore())));
+
+                TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
+                tv_score_change.setVisibility(View.INVISIBLE);
             }
 
         private static void StartReel (ScrollView scrollView,LinearLayout linearLayout_reel , String rolled_value, Handler handler, int reel_multiplier)
