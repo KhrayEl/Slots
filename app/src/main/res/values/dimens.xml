@@ -9,6 +9,9 @@
 
     <dimen name="slots_reel_outline_size">5dp</dimen>
 
+    <dimen name="slots_reel_middlebar_top_margin">160dp</dimen>
+    <dimen name="slots_reel_middlebar_bottom_margin">150dp</dimen>
+
 
     <dimen name="main_text_size">24sp</dimen>
     <dimen name="game_selector_text_size">45sp</dimen>

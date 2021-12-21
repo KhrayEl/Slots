@@ -13,8 +13,8 @@
     </item>
 
     <item
-        android:top="165dp"
-        android:bottom="155dp"
+        android:bottom="@dimen/slots_reel_middlebar_bottom_margin"
+        android:top="@dimen/slots_reel_middlebar_top_margin"
         android:left="@dimen/slots_reel_outline_size"
         android:right="@dimen/slots_reel_outline_size"
         android:gravity="fill_horizontal|center_vertical">
