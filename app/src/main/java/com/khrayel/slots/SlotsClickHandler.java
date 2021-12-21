@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Handler;
 import android.provider.Settings;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -163,8 +164,8 @@ public class SlotsClickHandler
                                 //50, 50 // - this works
 
                         );
-                        params.setMargins(15, 15, 0, 0);
-
+                        params.setMargins(0, 15, 0, 15);
+                        params.gravity = Gravity.CENTER;
                         imageView.setLayoutParams(params);
 
 //                        tv.setTextColor(parent.getResources().getColor(R.color.black));

@@ -205,7 +205,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                         ImageView imageView = new ImageView(view.getContext());
                         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 (int) (view.getContext().getResources().getDimension(R.dimen.slots_roll_size)));
-                        params.setMargins(15, 15, 0, 0);
+                        params.setMargins(0, 15, 0, 15);
+                        params.gravity= Gravity.CENTER;
                         imageView.setLayoutParams(params);
 
 //                        tv.setTextColor(view.getResources().getColor(R.color.black));
