@@ -64,9 +64,10 @@
                 android:id="@+id/slots_text_bet_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{Long.toString(slotsviewmodel.getBet())}"
                 android:textSize="@dimen/main_text_size"
                  />
+<!--                            android:text="@{Long.toString(slotsviewmodel.getBet())}"
+-->
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

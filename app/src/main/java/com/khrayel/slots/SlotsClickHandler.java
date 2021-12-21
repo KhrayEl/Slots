@@ -31,11 +31,17 @@ public class SlotsClickHandler
                         case R.id.slots_button_bet_plus:
                         {
                             slotsViewModel.BetIncrease();
+                            View parent = v.getRootView();
+                            TextView tv_bet_number = parent.findViewById(R.id.slots_text_bet_number);
+                            tv_bet_number.setText(String.format(Long.toString(slotsViewModel.getBet())));
                             break;
                         }
                         case R.id.slots_button_bet_minus:
                         {
                             slotsViewModel.BetDecrease();
+                            View parent = v.getRootView();
+                            TextView tv_bet_number = parent.findViewById(R.id.slots_text_bet_number);
+                            tv_bet_number.setText(String.format(Long.toString(slotsViewModel.getBet())));
                             break;
                         }
                         case R.id.slots_button_spin:
@@ -95,13 +101,14 @@ public class SlotsClickHandler
                 TextView tv_score = parent.findViewById(R.id.slots_text_Score);
                 TextView tv_record = parent.findViewById(R.id.slots_text_record);
 
-
                 btn_spin.setClickable(false);
                 btn_plus.setClickable(false);
                 btn_minus.setClickable(false);
 
                 View bet_layout = parent.findViewById(R.id.slots_layout_bets);
                 View restart_layout = parent.findViewById(R.id.slots_layout_restart);
+
+                TextView tv_bet_number = parent.findViewById(R.id.slots_text_bet_number);
 
 
                 LinearLayout linearLayout_reel = parent.findViewById(R.id.slots_layout_reel_1);
@@ -131,12 +138,12 @@ public class SlotsClickHandler
                                         scroll_1.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_green));
                                         scroll_2.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_green));
                                         scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_green));
+                                    } else
+                                    {
+                                        scroll_1.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
+                                        scroll_2.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
+                                        scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
                                     }
-                                else {
-                                    scroll_1.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
-                                    scroll_2.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
-                                    scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
-                                }
                                 if (slotsViewModel.getGameOver())
                                     {
                                         bet_layout.setVisibility(View.GONE);
@@ -144,6 +151,9 @@ public class SlotsClickHandler
                                     }
                                 tv_score.setText(String.format(Long.toString(slotsViewModel.getScore())));
                                 tv_record.setText(String.format(Long.toString(slotsViewModel.getRecord())));
+
+
+                                tv_bet_number.setText(String.format(Long.toString(slotsViewModel.getBet())));
                             }
                     }, 1700);
 
@@ -249,6 +259,9 @@ public class SlotsClickHandler
 
                 TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
                 tv_score_change.setVisibility(View.INVISIBLE);
+
+                TextView tv_bet_number = parent.findViewById(R.id.slots_text_bet_number);
+                tv_bet_number.setText(String.format(Long.toString(slotsViewModel.getBet())));
             }
 
         private static void StartReel (ScrollView scrollView, LinearLayout linearLayout_reel, int rolled_value_drawable, Handler handler, int reel_multiplier, SlotsRollsValues.DrawableType drawableType)
