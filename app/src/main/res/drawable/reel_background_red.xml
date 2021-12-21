@@ -1,4 +1,5 @@
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <item>
         <shape android:shape="rectangle"
             >
@@ -12,17 +13,16 @@
     </item>
 
     <item
-        android:top="420px"
-        android:bottom="370px"
+        android:top="165dp"
+        android:bottom="155dp"
         android:left="@dimen/slots_reel_outline_size"
-        android:right="@dimen/slots_reel_outline_size">
+        android:right="@dimen/slots_reel_outline_size"
+        android:gravity="fill_horizontal|center_vertical">
         <shape
             android:shape="rectangle">
 
-            <solid android:color="@color/silver" />
+            <solid android:color="@color/red" />
 
-            <stroke
-                android:color="@color/green" />
 
         </shape>
 

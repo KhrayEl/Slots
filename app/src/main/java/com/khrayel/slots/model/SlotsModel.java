@@ -1,36 +1,24 @@
-package com.khrayel.slots;
-
-import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
+package com.khrayel.slots.model;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
-import androidx.databinding.ObservableInt;
 import androidx.databinding.ObservableLong;
-import androidx.databinding.ObservableParcelable;
-import androidx.databinding.library.baseAdapters.BR;
 
-import org.json.JSONArray;
+import com.khrayel.slots.model.SlotsDefaultValues;
+import com.khrayel.slots.SlotsRollsValues;
+import com.khrayel.slots.SlotsWinConditions;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class SlotsModel extends BaseObservable implements SlotsWinConditions
     {
 
-        public SlotsModel (
-                          )
+        public SlotsModel ()
             {
             }
-
 
 
         private String slots_data_filename = "slots_data";
@@ -56,8 +44,13 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
                 score.set(new_score);
                 setRecord(new_score);
             }
+
         private ObservableLong change_in_score = new ObservableLong(SlotsDefaultValues.default_change_in_score.getValue());
-        public long getChangeInScore(){return this.change_in_score.get();}
+
+        public long getChangeInScore ()
+            {
+                return this.change_in_score.get();
+            }
 
         // RECORD SCORE
         private ObservableLong record = new ObservableLong(SlotsDefaultValues.default_record.getValue());
@@ -96,8 +89,6 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
         private SlotsRollsValues slotsRollsValues;
 
 
-
-
 //        private final ObservableField <String> roll1_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
 //        private final ObservableField <String> roll2_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
 //        private final ObservableField <String> roll3_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
@@ -116,18 +107,40 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
             {
                 return Objects.requireNonNull(roll3.get()).string_as_html_entity;
             }
-        public int getRoll1_drawable_id()
+
+        public int getRoll1_drawable_id (SlotsRollsValues.DrawableType type)
             {
-                return Objects.requireNonNull(roll1.get()).drawable_id;
+                switch (type)
+                    {
+                        case DRAWABLE_TYPE_EMOJI:
+                            return Objects.requireNonNull(roll1.get()).drawable_emoji;
+                        case DRAWABLE_TYPE_GEM:
+                            return Objects.requireNonNull(roll1.get()).drawable_gem;
+                    }
+                return 0;
             }
-        public int getRoll2_drawable_id()
+
+        public int getRoll2_drawable_id (SlotsRollsValues.DrawableType type)
             {
-                return Objects.requireNonNull(roll2.get()).drawable_id;
-            }
-        public int getRoll3_drawable_id()
+                switch (type)
+                    {
+                        case DRAWABLE_TYPE_EMOJI:
+                            return Objects.requireNonNull(roll2.get()).drawable_emoji;
+                        case DRAWABLE_TYPE_GEM:
+                            return Objects.requireNonNull(roll2.get()).drawable_gem;
+                    }
+                return 0;            }
+
+        public int getRoll3_drawable_id (SlotsRollsValues.DrawableType type)
             {
-                return Objects.requireNonNull(roll3.get()).drawable_id;
-            }
+                switch (type)
+                    {
+                        case DRAWABLE_TYPE_EMOJI:
+                            return Objects.requireNonNull(roll3.get()).drawable_emoji;
+                        case DRAWABLE_TYPE_GEM:
+                            return Objects.requireNonNull(roll3.get()).drawable_gem;
+                    }
+                return 0;            }
 
 
         private final ObservableField<SlotsRollsValues> roll1 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
@@ -252,7 +265,7 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
         private void Win (int multiplier)
             {
                 long new_score = score.get() + current_bet.get() * multiplier;
-                change_in_score.set(new_score-score.get());
+                change_in_score.set(new_score - score.get());
                 setScore(new_score);
             }
 
@@ -266,23 +279,22 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
                                 decreaseBet_model();
                             }
                     }
-                change_in_score.set(new_score-score.get());
+                change_in_score.set(new_score - score.get());
                 setScore(new_score);
             }
 
 
         public void GetNewRolls ()
             {
-                long temp_score=score.get();
+                long temp_score = score.get();
 
-                int upto=SlotsDefaultValues.DEFAULT_ROLL_MAX.getValue();
-                int divisor= SlotsDefaultValues.SCORE_DIVISOR_FOR_ROLL_INCREMENT.getValue();
-                while (temp_score/divisor>=divisor)
+                int upto = SlotsDefaultValues.DEFAULT_ROLL_MAX.getValue();
+                int divisor = SlotsDefaultValues.SCORE_DIVISOR_FOR_ROLL_INCREMENT.getValue();
+                while (temp_score / divisor >= divisor)
                     {
-                        temp_score=temp_score/divisor;
-                        upto=upto+SlotsDefaultValues.ROLL_INCREMENT.getValue();
+                        temp_score = temp_score / divisor;
+                        upto = upto + SlotsDefaultValues.ROLL_INCREMENT.getValue();
                     }
-
 
 
                 roll1.set(SlotsRollsValues.getRandomRoll(upto));
@@ -293,9 +305,9 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 //                roll3.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 
                 int mult = GetResultMultiplier(
-                        Objects.requireNonNull(roll1.get()).numeric,
-                        Objects.requireNonNull(roll2.get()).numeric,
-                        Objects.requireNonNull(roll3.get()).numeric);
+                        Objects.requireNonNull(roll1.get()).integer,
+                        Objects.requireNonNull(roll2.get()).integer,
+                        Objects.requireNonNull(roll3.get()).integer);
                 if (mult > 0)
                     {
                         Win(mult);

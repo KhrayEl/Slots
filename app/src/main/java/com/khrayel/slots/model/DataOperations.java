@@ -1,4 +1,4 @@
-package com.khrayel.slots;
+package com.khrayel.slots.model;
 
 
 import android.content.Context;

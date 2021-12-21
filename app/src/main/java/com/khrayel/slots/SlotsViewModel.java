@@ -1,13 +1,12 @@
 package com.khrayel.slots;
 
-import android.view.View;
-
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 import androidx.lifecycle.ViewModel;
 
-import org.json.JSONArray;
+import com.khrayel.slots.model.SlotsModel;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -16,6 +15,7 @@ public class SlotsViewModel extends ViewModel implements Observable
 
         private SlotsModel slotsModel = new SlotsModel();
 
+        public SlotsRollsValues.DrawableType selected_drawable_type = SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM;
 
         public String getSlots_data_filename ()
             {
@@ -59,19 +59,19 @@ public class SlotsViewModel extends ViewModel implements Observable
         public int getRoll1 ()
             {
                 //return slotsModel.getRoll1_string();
-                return slotsModel.getRoll1_drawable_id();
+                return slotsModel.getRoll1_drawable_id(selected_drawable_type);
             }
 
         @Bindable
         public int getRoll2 ()
             {
-                return slotsModel.getRoll2_drawable_id();
+                return slotsModel.getRoll2_drawable_id(selected_drawable_type);
             }
 
         @Bindable
         public int getRoll3 ()
             {
-                return slotsModel.getRoll3_drawable_id();
+                return slotsModel.getRoll3_drawable_id(selected_drawable_type);
             }
 
 

@@ -27,7 +27,7 @@
             android:layout_width="@dimen/slots_reel_width"
             android:layout_height="match_parent"
             android:layout_weight="7"
-            android:background="@drawable/reel_background"
+            android:background="@drawable/reel_background_grey"
             android:gravity="center"
 
             android:padding="5dip"
@@ -94,7 +94,7 @@
             android:layout_width="@dimen/slots_reel_width"
             android:layout_height="match_parent"
             android:layout_weight="7"
-            android:background="@drawable/reel_background"
+            android:background="@drawable/reel_background_grey"
             android:gravity="center"
 
             android:padding="5dip"
@@ -160,7 +160,7 @@
             android:layout_width="@dimen/slots_reel_width"
             android:layout_height="match_parent"
             android:layout_weight="7"
-            android:background="@drawable/reel_background"
+            android:background="@drawable/reel_background_grey"
             android:gravity="center"
 
             android:padding="5dip"

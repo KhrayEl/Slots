@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,14 +17,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 
 import com.khrayel.slots.databinding.SlotsFragmentBinding;
+import com.khrayel.slots.model.DataOperations;
 
-import java.io.IOException;
 import java.util.Objects;
 
 /**
@@ -103,8 +105,10 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 SetOnClickListeners(view);
 
-                TextView tv_score=(TextView)view.findViewById(R.id.slots_text_Score);tv_score.setText(String.format(Long.toString(slotsviewmodel.getScore())));
-                TextView tv_record=(TextView)view.findViewById(R.id.slots_text_record);tv_record.setText(String.format(Long.toString(slotsviewmodel.getRecord())));
+                TextView tv_score = (TextView) view.findViewById(R.id.slots_text_Score);
+                tv_score.setText(String.format(Long.toString(slotsviewmodel.getScore())));
+                TextView tv_record = (TextView) view.findViewById(R.id.slots_text_record);
+                tv_record.setText(String.format(Long.toString(slotsviewmodel.getRecord())));
 
 
                 SetReelCentered(view.findViewById(R.id.slots_layout_scroll_1));
@@ -160,12 +164,14 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
         void SetReelCentered (ScrollView scroll)
             {
-                scroll.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch (View v, MotionEvent event) {
-                        return true;
-                    }
-                });
+                scroll.setOnTouchListener(new View.OnTouchListener()
+                    {
+                        @Override
+                        public boolean onTouch (View v, MotionEvent event)
+                            {
+                                return true;
+                            }
+                    });
 
                 PopulateReelOnStart(scroll);
 
@@ -175,7 +181,7 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                         public void run ()
                             {
                                 ViewGroup viewGroup = (ViewGroup) scroll.getChildAt(0);
-                                View view=viewGroup.getChildAt(2);
+                                View view = viewGroup.getChildAt(2);
                                 int vTop = view.getTop();
                                 int vBottom = view.getBottom();
                                 int sHeight = scroll.getBottom();
@@ -190,22 +196,27 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 SlotsClickHandler.HandleOnClick(v, slotsviewmodel);
             }
 
-        private void PopulateReelOnStart(ViewGroup view)
+        private void PopulateReelOnStart (ViewGroup view)
             {
-                LinearLayout linearLayout=(LinearLayout)view.getChildAt(0);
+                LinearLayout linearLayout = (LinearLayout) view.getChildAt(0);
 
-                for (int i=0;i<5;i++)
+                for (int i = 0; i < 5; i++)
                     {
-                        TextView tv = new TextView(view.getContext());
-                        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        tv.setTextColor(view.getResources().getColor(R.color.black));
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, view.getResources().getDimension(R.dimen.slots_roll_size));
-                        tv.setGravity(Gravity.CENTER);
+                        ImageView imageView = new ImageView(view.getContext());
+                        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                (int) (view.getContext().getResources().getDimension(R.dimen.slots_roll_size)));
+                        params.setMargins(15, 15, 0, 0);
+                        imageView.setLayoutParams(params);
 
-                        tv.setBackground(AppCompatResources.getDrawable(view.getContext(),SlotsRollsValues.getRandomRoll().drawable_id));
+//                        tv.setTextColor(view.getResources().getColor(R.color.black));
+//                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, view.getResources().getDimension(R.dimen.slots_roll_size));
+//                        tv.setGravity(Gravity.CENTER);
 
+//                        tv.setBackground(AppCompatResources.getDrawable(view.getContext(),SlotsRollsValues.getRandomRollDrawable(slotsviewmodel.selected_drawable_type)));
 
-                        linearLayout.addView(tv);
+                        imageView.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getRandomRollDrawable(slotsviewmodel.selected_drawable_type)));
+
+                        linearLayout.addView(imageView);
 
                     }
             }

@@ -4,10 +4,9 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Handler;
 import android.provider.Settings;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -81,6 +80,15 @@ public class SlotsClickHandler
                 Button btn_plus = parent.findViewById(R.id.slots_button_bet_plus);
                 Button btn_minus = parent.findViewById(R.id.slots_button_bet_minus);
 
+                ScrollView scroll_1 = parent.findViewById(R.id.slots_layout_scroll_1);
+                ScrollView scroll_2 = parent.findViewById(R.id.slots_layout_scroll_2);
+                ScrollView scroll_3 = parent.findViewById(R.id.slots_layout_scroll_3);
+
+                scroll_1.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_grey));
+                scroll_2.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_grey));
+                scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_grey));
+
+
                 TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
                 tv_score_change.setVisibility(View.INVISIBLE);
                 TextView tv_score = parent.findViewById(R.id.slots_text_Score);
@@ -96,14 +104,14 @@ public class SlotsClickHandler
 
 
                 LinearLayout linearLayout_reel = parent.findViewById(R.id.slots_layout_reel_1);
-                ScrollView scroll = parent.findViewById(R.id.slots_layout_scroll_1);
+//                ScrollView scroll = parent.findViewById(R.id.slots_layout_scroll_1);
 //                        (ScrollView) linearLayout_reel.getParent();
                 //View view = parent.findViewById(R.id.slots_text_reel1);
 
 
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_1), parent.findViewById(R.id.slots_layout_reel_1), slotsViewModel.getRoll1(), handler, 1);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), parent.findViewById(R.id.slots_layout_reel_2), slotsViewModel.getRoll2(), handler, 2);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), parent.findViewById(R.id.slots_layout_reel_3), slotsViewModel.getRoll3(), handler, 3);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_1), parent.findViewById(R.id.slots_layout_reel_1), slotsViewModel.getRoll1(), handler, 1, slotsViewModel.selected_drawable_type);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), parent.findViewById(R.id.slots_layout_reel_2), slotsViewModel.getRoll2(), handler, 2, slotsViewModel.selected_drawable_type);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), parent.findViewById(R.id.slots_layout_reel_3), slotsViewModel.getRoll3(), handler, 3, slotsViewModel.selected_drawable_type);
 
 
                 //  focusOnView((ScrollView) scroll, linearLayout_reel.getChildAt(2), handler, 0);
@@ -117,6 +125,17 @@ public class SlotsClickHandler
                                 btn_plus.setClickable(true);
                                 btn_minus.setClickable(true);
                                 tv_score_change.setVisibility(View.VISIBLE);
+                                if (slotsViewModel.getChangeInScore() > 0)
+                                    {
+                                        scroll_1.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_green));
+                                        scroll_2.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_green));
+                                        scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_green));
+                                    }
+                                else {
+                                    scroll_1.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
+                                    scroll_2.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
+                                    scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_red));
+                                }
                                 if (slotsViewModel.getGameOver())
                                     {
                                         bet_layout.setVisibility(View.GONE);
@@ -129,29 +148,48 @@ public class SlotsClickHandler
 
             }
 
-        public static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, int rolled_value_drawable, Handler handler)
+        public static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, int rolled_value_drawable, SlotsRollsValues.DrawableType drawableType)
             {
                 for (int i = 0; i < number_of_children_to_add; i++)
                     {
-                        TextView tv = new TextView(parent.getContext());
-                        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-                        tv.setTextColor(parent.getResources().getColor(R.color.black));
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, parent.getResources().getDimension(R.dimen.slots_roll_size));
-                        tv.setGravity(Gravity.CENTER);
+                        ImageView imageView = new ImageView(parent.getContext());
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                //ViewGroup.LayoutParams.WRAP_CONTENT
+//                                (int)  ( parent.getContext().getResources().getDimension(R.dimen.slots_roll_size)/*/parent.getContext().getResources().getDisplayMetrics().density*/)
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                (int) (parent.getContext().getResources().getDimension(R.dimen.slots_roll_size)/*/parent.getContext().getResources().getDisplayMetrics().density*/)
+
+
+                                //50, 50 // - this works
+
+                        );
+                        params.setMargins(15, 15, 0, 0);
+
+                        imageView.setLayoutParams(params);
+
+//                        tv.setTextColor(parent.getResources().getColor(R.color.black));
+//                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, parent.getResources().getDimension(R.dimen.slots_roll_size));
+//                        tv.setGravity(Gravity.CENTER);
                         //tv.setBackground(parent.getResources().getDrawable(R.drawable._1f60d));
 
                         if (i != number_of_children_to_add - 3)
                             {
-                              //  tv.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
-                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),SlotsRollsValues.getRandomRoll().drawable_id));
+                                //  tv.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
+//                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),SlotsRollsValues.getRandomRollDrawable(drawableType)));
+                                imageView.setImageDrawable(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getRandomRollDrawable(drawableType)));
+//                                imageView.setBackgroundColor(parent.getResources().getColor(R.color.red));
                             } else
                             {
 
                                 //tv.setText(rolled_value);
-                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),rolled_value_drawable));
+//                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),rolled_value_drawable));
+                                imageView.setImageDrawable(AppCompatResources.getDrawable(parent.getContext(), rolled_value_drawable));
+
+//                                imageView.setBackgroundColor(parent.getResources().getColor(R.color.green));
+
                             }
 
-                        parent.addView(tv);
+                        parent.addView(imageView);
                     }
             }
 
@@ -212,13 +250,13 @@ public class SlotsClickHandler
                 tv_score_change.setVisibility(View.INVISIBLE);
             }
 
-        private static void StartReel (ScrollView scrollView, LinearLayout linearLayout_reel, int rolled_value_drawable, Handler handler, int reel_multiplier)
+        private static void StartReel (ScrollView scrollView, LinearLayout linearLayout_reel, int rolled_value_drawable, Handler handler, int reel_multiplier, SlotsRollsValues.DrawableType drawableType)
             {
                 //LinearLayout linearLayout_reel = (LinearLayout) scrollView.getChildAt(0);
                 int childs_to_add = 100;
 
                 int reel_anim_delay = 50;
-
+                scrollView.setBackground(AppCompatResources.getDrawable(scrollView.getContext(), R.drawable.reel_background_grey));
                 int children_in_reel = linearLayout_reel.getChildCount();
                 for (int i = childs_to_add * reel_multiplier; i > 0 /*linearLayout_reel.getChildCount() - 5*/
                         && children_in_reel > 5; i--)
@@ -239,7 +277,7 @@ public class SlotsClickHandler
 //                                linearLayout_reel.getChildAt(index_of_child_to_focus).getBottom() -
 //                                scroll.getBottom())
 //                 / 2));
-                AddChildrenToReel(linearLayout_reel, childs_to_add * reel_multiplier, rolled_value_drawable, handler);
+                AddChildrenToReel(linearLayout_reel, childs_to_add * reel_multiplier, rolled_value_drawable, drawableType);
 
                 int index_of_child_to_focus = linearLayout_reel.getChildCount() - 3;
 

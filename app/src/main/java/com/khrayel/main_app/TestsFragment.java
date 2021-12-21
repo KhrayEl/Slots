@@ -136,7 +136,7 @@ private Random random;
                             ViewGroup linearLayout=(ViewGroup) parent.getChildAt(0);
                             Button button = new Button(this.getContext());
 
-                            button.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
+                            //button.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
                             button.setTextSize(R.dimen.main_text_size);
                             button.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
                             button.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
