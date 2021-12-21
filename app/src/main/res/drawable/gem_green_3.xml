@@ -1,0 +1,63 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:viewportWidth="26.19713"
+    android:viewportHeight="29.9411"
+    android:width="99.01276dp"
+    android:height="113.1632dp">
+    <group
+        android:translateX="-111.3444"
+        android:translateY="-64.711">
+        <group
+            android:scaleX="0.04642234"
+            android:scaleY="0.04642234"
+            android:translateX="107.5095"
+            android:translateY="53.09822">
+            <path
+                android:pathData="M240.57812 253.00477L279.8457 354.0204h169.84571l39.26757 -101.01563z"
+                android:fillColor="#37C8AB" />
+            <path
+                android:pathData="M240.57812 253.00477l-154.861323 194.19141 89.269533 353.375 189.7832 91.39258 189.78125 -91.39258 89.26953 -353.375L488.95898 253.00477ZM279.8457 354.0204H449.69141L555.58789 486.81141 494.54492 728.45204 364.76953 790.95008 234.99219 728.45204 173.94922 486.81141Z"
+                android:fillColor="#5FD35F" />
+            <path
+                android:pathData="M555.58789 486.81141L643.82031 447.19618 488.95898 253.00477 449.69141 354.0204Z"
+                android:fillColor="#87DE87" />
+            <path
+                android:pathData="M494.54492 728.45204l60.00586 72.11914 89.26953 -353.375 -88.23242 39.61523z"
+                android:fillColor="#37C837" />
+            <path
+                android:pathData="M364.76953 790.95008V891.96376L554.55078 800.57118 494.54492 728.45204Z"
+                android:fillColor="#2CA02C" />
+            <path
+                android:pathData="M234.99219 728.45204l-60.00586 72.11914 189.7832 91.39258V790.95008Z"
+                android:fillColor="#217821" />
+            <path
+                android:pathData="M173.94922 486.81141l-88.232423 -39.61523 89.269533 353.375 60.00586 -72.11914z"
+                android:fillColor="#2CA02C" />
+            <path
+                android:pathData="M240.57812 253.00477L85.716797 447.19618 173.94922 486.81141 279.8457 354.0204Z"
+                android:fillColor="#87DE87" />
+            <path
+                android:pathData="M364.76857 790.95014L234.99301 728.45353 173.94925 486.81142 279.84597 354.02111h169.84518l105.89674 132.7903 -61.04376 241.64211z"
+                android:fillColor="#AFE9AF" />
+            <path
+                android:pathData="M463.27148 371.04969a295 280.71429 0 0 1 5.30079 51.98047 295 280.71429 0 0 1 -241.0586 275.81836l7.47852 29.60547 129.77734 62.49609 129.77539 -62.49609 61.04297 -241.64258z"
+                android:fillColor="#D7F4D7" />
+            <path
+                android:pathData="M240.57812 253.00477l-154.861323 194.19141 89.269533 353.375 189.7832 91.39258 189.78125 -91.39258 89.26953 -353.375L488.95898 253.00477ZM279.8457 354.0204H449.69141L555.58789 486.81141 494.54492 728.45204 364.76953 790.95008 234.99219 728.45204 173.94922 486.81141Z"
+                android:strokeColor="#0B280B"
+                android:strokeWidth="5.69948" />
+            <path
+                android:pathData="M365.7143 650.1733A35.71429 26.42857 0 0 1 294.2857 650.1733A35.71429 26.42857 0 0 1 365.7143 650.1733Z"
+                android:fillColor="#D7F4D7" />
+            <path
+                android:pathData="M461.4286 520.1733A22.14286 25 0 0 1 417.1429 520.1733A22.14286 25 0 0 1 461.4286 520.1733Z"
+                android:fillColor="#D7F4D7" />
+            <path
+                android:pathData="M331.4286 461.6019A39.28572 39.28571 0 0 1 252.8572 461.6019A39.28572 39.28571 0 0 1 331.4286 461.6019Z"
+                android:fillColor="#D7F4D7" />
+            <path
+                android:pathData="M250.019 277.28993L106.92951 456.71986 189.41318 783.23195 364.76956 867.6786 540.12393 783.23195 622.6076 456.71986 479.51811 277.28993Zm15.51989 40.66467H463.99822L587.73686 473.11713 516.40843 755.4692 364.76956 828.49375 213.12867 755.4692 141.80025 473.11713Z"
+                android:fillColor="#AFE9AF"
+                android:fillAlpha="0.5" />
+        </group>
+    </group>
+</vector>

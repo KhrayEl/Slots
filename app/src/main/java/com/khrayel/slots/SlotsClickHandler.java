@@ -12,6 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 
 
 import android.view.ViewGroup;
@@ -82,9 +83,8 @@ public class SlotsClickHandler
 
                 TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
                 tv_score_change.setVisibility(View.INVISIBLE);
-                TextView tv_score=parent.findViewById(R.id.slots_text_Score);
-                TextView tv_record=parent.findViewById(R.id.slots_text_record);
-
+                TextView tv_score = parent.findViewById(R.id.slots_text_Score);
+                TextView tv_record = parent.findViewById(R.id.slots_text_record);
 
 
                 btn_spin.setClickable(false);
@@ -102,8 +102,8 @@ public class SlotsClickHandler
 
 
                 StartReel(parent.findViewById(R.id.slots_layout_scroll_1), parent.findViewById(R.id.slots_layout_reel_1), slotsViewModel.getRoll1(), handler, 1);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), parent.findViewById(R.id.slots_layout_reel_2),slotsViewModel.getRoll2(), handler, 2);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), parent.findViewById(R.id.slots_layout_reel_3),slotsViewModel.getRoll3(), handler, 3);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), parent.findViewById(R.id.slots_layout_reel_2), slotsViewModel.getRoll2(), handler, 2);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), parent.findViewById(R.id.slots_layout_reel_3), slotsViewModel.getRoll3(), handler, 3);
 
 
                 //  focusOnView((ScrollView) scroll, linearLayout_reel.getChildAt(2), handler, 0);
@@ -129,10 +129,8 @@ public class SlotsClickHandler
 
             }
 
-        private static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, String rolled_value, Handler handler)
+        public static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, int rolled_value_drawable, Handler handler)
             {
-
-
                 for (int i = 0; i < number_of_children_to_add; i++)
                     {
                         TextView tv = new TextView(parent.getContext());
@@ -140,16 +138,17 @@ public class SlotsClickHandler
                         tv.setTextColor(parent.getResources().getColor(R.color.black));
                         tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, parent.getResources().getDimension(R.dimen.slots_roll_size));
                         tv.setGravity(Gravity.CENTER);
-
+                        //tv.setBackground(parent.getResources().getDrawable(R.drawable._1f60d));
 
                         if (i != number_of_children_to_add - 3)
                             {
-                                tv.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
+                              //  tv.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
+                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),SlotsRollsValues.getRandomRoll().drawable_id));
                             } else
                             {
 
-                                tv.setText(rolled_value);
-                         //       tv.setBackgroundColor(parent.getResources().getColor(R.color.green));
+                                //tv.setText(rolled_value);
+                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),rolled_value_drawable));
                             }
 
                         parent.addView(tv);
@@ -205,16 +204,15 @@ public class SlotsClickHandler
                 restart_layout.setVisibility(View.GONE);
 
 
-
                 slotsViewModel.Restart();
-                TextView tv_score=parent.findViewById(R.id.slots_text_Score);
+                TextView tv_score = parent.findViewById(R.id.slots_text_Score);
                 tv_score.setText(String.format(Long.toString(slotsViewModel.getScore())));
 
                 TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
                 tv_score_change.setVisibility(View.INVISIBLE);
             }
 
-        private static void StartReel (ScrollView scrollView,LinearLayout linearLayout_reel , String rolled_value, Handler handler, int reel_multiplier)
+        private static void StartReel (ScrollView scrollView, LinearLayout linearLayout_reel, int rolled_value_drawable, Handler handler, int reel_multiplier)
             {
                 //LinearLayout linearLayout_reel = (LinearLayout) scrollView.getChildAt(0);
                 int childs_to_add = 100;
@@ -222,8 +220,8 @@ public class SlotsClickHandler
                 int reel_anim_delay = 50;
 
                 int children_in_reel = linearLayout_reel.getChildCount();
-                for (int i = childs_to_add * reel_multiplier; i >0 /*linearLayout_reel.getChildCount() - 5*/
-                         && children_in_reel > 5; i--)
+                for (int i = childs_to_add * reel_multiplier; i > 0 /*linearLayout_reel.getChildCount() - 5*/
+                        && children_in_reel > 5; i--)
                     {
                         try
                             {
@@ -241,7 +239,7 @@ public class SlotsClickHandler
 //                                linearLayout_reel.getChildAt(index_of_child_to_focus).getBottom() -
 //                                scroll.getBottom())
 //                 / 2));
-                AddChildrenToReel(linearLayout_reel, childs_to_add * reel_multiplier, rolled_value, handler);
+                AddChildrenToReel(linearLayout_reel, childs_to_add * reel_multiplier, rolled_value_drawable, handler);
 
                 int index_of_child_to_focus = linearLayout_reel.getChildCount() - 3;
 

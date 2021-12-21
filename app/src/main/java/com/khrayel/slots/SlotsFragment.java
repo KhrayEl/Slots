@@ -2,16 +2,21 @@ package com.khrayel.slots;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -19,6 +24,7 @@ import android.widget.TextView;
 import com.khrayel.slots.databinding.SlotsFragmentBinding;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,7 +84,7 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
             }
 
         @Override
-        public View onCreateView (LayoutInflater inflater, ViewGroup container,
+        public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container,
                                   Bundle savedInstanceState)
             {
                 // Inflate the layout for this fragment
@@ -93,7 +99,7 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 binding.setSlotsviewmodel(slotsviewmodel);
 
 
-                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), this.getContext()));
+                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext())));
 
                 SetOnClickListeners(view);
 
@@ -132,7 +138,7 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 super.onStop();
 
                 // write data to file
-                writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), this.getContext());
+                writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext()));
 
             }
 
@@ -160,6 +166,9 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                         return true;
                     }
                 });
+
+                PopulateReelOnStart(scroll);
+
                 new Handler().post(new Runnable()
                     {
                         @Override
@@ -179,5 +188,25 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
         public void onClick (View v)
             {
                 SlotsClickHandler.HandleOnClick(v, slotsviewmodel);
+            }
+
+        private void PopulateReelOnStart(ViewGroup view)
+            {
+                LinearLayout linearLayout=(LinearLayout)view.getChildAt(0);
+
+                for (int i=0;i<5;i++)
+                    {
+                        TextView tv = new TextView(view.getContext());
+                        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                        tv.setTextColor(view.getResources().getColor(R.color.black));
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, view.getResources().getDimension(R.dimen.slots_roll_size));
+                        tv.setGravity(Gravity.CENTER);
+
+                        tv.setBackground(AppCompatResources.getDrawable(view.getContext(),SlotsRollsValues.getRandomRoll().drawable_id));
+
+
+                        linearLayout.addView(tv);
+
+                    }
             }
     }

@@ -3,6 +3,7 @@ package com.khrayel.slots;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
@@ -114,6 +115,18 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
         public String getRoll3_string ()
             {
                 return Objects.requireNonNull(roll3.get()).string_as_html_entity;
+            }
+        public int getRoll1_drawable_id()
+            {
+                return Objects.requireNonNull(roll1.get()).drawable_id;
+            }
+        public int getRoll2_drawable_id()
+            {
+                return Objects.requireNonNull(roll2.get()).drawable_id;
+            }
+        public int getRoll3_drawable_id()
+            {
+                return Objects.requireNonNull(roll3.get()).drawable_id;
             }
 
 

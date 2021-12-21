@@ -29,14 +29,14 @@ public class SlotsViewModel extends ViewModel implements Observable
                 return this.slotsModel.getScore();
             }
 
-//        public void setScore (long new_score)
+        //        public void setScore (long new_score)
 //            {
 //                this.slotsModel.setScore(new_score);
 //            }
-public long getChangeInScore ()
-    {
-        return this.slotsModel.getChangeInScore();
-    }
+        public long getChangeInScore ()
+            {
+                return this.slotsModel.getChangeInScore();
+            }
 
 
         // RECORD SCORE
@@ -56,21 +56,22 @@ public long getChangeInScore ()
 
         // ROLLS
         @Bindable
-        public String getRoll1 ()
+        public int getRoll1 ()
             {
-                return slotsModel.getRoll1_string();
+                //return slotsModel.getRoll1_string();
+                return slotsModel.getRoll1_drawable_id();
             }
 
         @Bindable
-        public String getRoll2 ()
+        public int getRoll2 ()
             {
-                return slotsModel.getRoll2_string();
+                return slotsModel.getRoll2_drawable_id();
             }
 
         @Bindable
-        public String getRoll3 ()
+        public int getRoll3 ()
             {
-                return slotsModel.getRoll3_string();
+                return slotsModel.getRoll3_drawable_id();
             }
 
 
