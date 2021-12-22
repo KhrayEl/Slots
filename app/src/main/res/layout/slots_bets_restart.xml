@@ -1,0 +1,32 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SlotsFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="slotsviewmodel"
+            type="com.khrayel.slots.SlotsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/slots_layout_bets"
+            layout="@layout/slots_layout_bets"
+            app:layout_constraintVertical_weight="1"
+
+            app:slotsviewmodel="@{slotsviewmodel}" />
+
+        <include
+            android:id="@+id/slots_layout_restart"
+            layout="@layout/slots_layout_restart"
+            android:visibility="gone"
+            app:slotsviewmodel="@{slotsviewmodel}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

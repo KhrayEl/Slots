@@ -2,6 +2,7 @@ package com.khrayel.slots;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -17,6 +18,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import java.util.Random;
 
 
 public class SlotsClickHandler
@@ -52,6 +55,11 @@ public class SlotsClickHandler
                         case R.id.slots_button_restart:
                         {
                             HandleRestart(v, slotsViewModel);
+                            break;
+                        }
+                        case R.id.drawable_style_changer_button:
+                        {
+                            HandleStyleChange(v, slotsViewModel);
                             break;
                         }
                     }
@@ -117,9 +125,9 @@ public class SlotsClickHandler
                 //View view = parent.findViewById(R.id.slots_text_reel1);
 
 
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_1), parent.findViewById(R.id.slots_layout_reel_1), slotsViewModel.getRoll1(), handler, 1, slotsViewModel.selected_drawable_type);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), parent.findViewById(R.id.slots_layout_reel_2), slotsViewModel.getRoll2(), handler, 2, slotsViewModel.selected_drawable_type);
-                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), parent.findViewById(R.id.slots_layout_reel_3), slotsViewModel.getRoll3(), handler, 3, slotsViewModel.selected_drawable_type);
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_1), parent.findViewById(R.id.slots_layout_reel_1), slotsViewModel.getRoll1(), handler, 1, slotsViewModel.getSelected_drawable_type());
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_2), parent.findViewById(R.id.slots_layout_reel_2), slotsViewModel.getRoll2(), handler, 2, slotsViewModel.getSelected_drawable_type());
+                StartReel(parent.findViewById(R.id.slots_layout_scroll_3), parent.findViewById(R.id.slots_layout_reel_3), slotsViewModel.getRoll3(), handler, 3, slotsViewModel.getSelected_drawable_type());
 
 
                 //  focusOnView((ScrollView) scroll, linearLayout_reel.getChildAt(2), handler, 0);
@@ -159,8 +167,10 @@ public class SlotsClickHandler
 
             }
 
-        public static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, int rolled_value_drawable, SlotsRollsValues.DrawableType drawableType)
+        public static void AddChildrenToReel (ViewGroup parent, int number_of_children_to_add, int rolled_value, SlotsRollsValues.DrawableType drawableType)
             {
+                Random random=new Random();
+
                 for (int i = 0; i < number_of_children_to_add; i++)
                     {
                         ImageView imageView = new ImageView(parent.getContext());
@@ -174,6 +184,7 @@ public class SlotsClickHandler
                                 //50, 50 // - this works
 
                         );
+
                         params.setMargins(0, 15, 0, 15);
                         params.gravity = Gravity.CENTER;
                         imageView.setLayoutParams(params);
@@ -187,19 +198,22 @@ public class SlotsClickHandler
                             {
                                 //  tv.setText(SlotsRollsValues.getRandomRoll().string_as_html_entity);
 //                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),SlotsRollsValues.getRandomRollDrawable(drawableType)));
-                                imageView.setImageDrawable(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getRandomRollDrawable(drawableType)));
+                                int rnd=random.nextInt(SlotsRollsValues.values().length);
+                                imageView.setImageDrawable(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getDrawable(rnd,drawableType)));
+                                imageView.setTag(rnd);
+
 //                                imageView.setBackgroundColor(parent.getResources().getColor(R.color.red));
                             } else
                             {
 
                                 //tv.setText(rolled_value);
 //                                tv.setBackground(AppCompatResources.getDrawable(parent.getContext(),rolled_value_drawable));
-                                imageView.setImageDrawable(AppCompatResources.getDrawable(parent.getContext(), rolled_value_drawable));
+                                imageView.setImageDrawable(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getDrawable(rolled_value,drawableType)));
+                                imageView.setTag(rolled_value);
 
 //                                imageView.setBackgroundColor(parent.getResources().getColor(R.color.green));
 
                             }
-
                         parent.addView(imageView);
                     }
             }
@@ -305,5 +319,41 @@ public class SlotsClickHandler
 
 //                            }
 //                    },0);
+            }
+
+        private static void HandleStyleChange (View v, @NonNull SlotsViewModel slotsViewModel)
+            {                ViewGroup parent = (ViewGroup) v.getParent().getParent().getParent();
+
+                switch (slotsViewModel.getSelected_drawable_type())
+                    {
+                        case DRAWABLE_TYPE_EMOJI:
+                        {
+                            slotsViewModel.setSelected_drawable_type(SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM);
+                            parent.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getDrawable(0,SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI)));
+
+                            break;
+                        }
+                        case DRAWABLE_TYPE_GEM:
+                        {
+                            slotsViewModel.setSelected_drawable_type(SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI);
+                            parent.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getDrawable(0,SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM)));
+                            break;
+                        }
+                    }
+                RedrawReels(parent.findViewById(R.id.slots_layout_reel_1),slotsViewModel);
+                RedrawReels(parent.findViewById(R.id.slots_layout_reel_2),slotsViewModel);
+                RedrawReels(parent.findViewById(R.id.slots_layout_reel_3),slotsViewModel);
+
+
+            }
+
+        private static void RedrawReels (LinearLayout linearLayout_reel,SlotsViewModel slotsViewModel)
+            {
+                for (int i = 1; i <= 5; i++)
+                    {
+                        ImageView  imageView=(ImageView)linearLayout_reel.getChildAt(linearLayout_reel.getChildCount()-i);
+                        int tag=(int)imageView.getTag();
+                        imageView.setImageDrawable(AppCompatResources.getDrawable(linearLayout_reel.getContext(), SlotsRollsValues.getDrawable(tag,slotsViewModel.getSelected_drawable_type())));
+                    }
             }
     }

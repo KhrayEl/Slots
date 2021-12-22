@@ -19,7 +19,7 @@
 
         <Space
             android:id="@+id/slots_space_roll_1"
-            android:layout_width="10sp"
+            android:layout_width="10dp"
             android:layout_height="match_parent" />
 
         <ScrollView
@@ -30,63 +30,24 @@
             android:background="@drawable/reel_background_grey"
             android:gravity="center"
 
-            android:padding="5dip"
+            android:padding="@dimen/slots_reel_outline_size"
             android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/slots_layout_reel_1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical"
                 >
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:background="@{SlotsRollsValues.getRandomRoll().drawable_id}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
             </LinearLayout>
 
         </ScrollView>
 
         <Space
             android:id="@+id/slots_space_reel_2"
-            android:layout_width="10sp"
+            android:layout_width="10dp"
             android:layout_height="match_parent" />
 
         <ScrollView
@@ -97,62 +58,22 @@
             android:background="@drawable/reel_background_grey"
             android:gravity="center"
 
-            android:padding="5dip"
+            android:padding="@dimen/slots_reel_outline_size"
             android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/slots_layout_reel_2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-<!--                -->
             </LinearLayout>
         </ScrollView>
 
         <Space
             android:id="@+id/slots_space_reel_3"
-            android:layout_width="10sp"
+            android:layout_width="10dp"
             android:layout_height="match_parent" />
 
         <ScrollView
@@ -163,61 +84,22 @@
             android:background="@drawable/reel_background_grey"
             android:gravity="center"
 
-            android:padding="5dip"
+            android:padding="@dimen/slots_reel_outline_size"
             android:scrollbars="none">
 
             <LinearLayout
                 android:id="@+id/slots_layout_reel_3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@{SlotsRollsValues.getRandomRoll().string_as_html_entity}"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="@dimen/slots_roll_size" />-->
             </LinearLayout>
         </ScrollView>
 
         <Space
             android:id="@+id/space_reel_4"
-            android:layout_width="10sp"
+            android:layout_width="10dp"
             android:layout_height="match_parent" />
     </LinearLayout>
 </layout>

@@ -1,10 +1,11 @@
-package com.khrayel.slots.model;
+package com.khrayel.slots;
 
 import androidx.databinding.BaseObservable;
 import androidx.databinding.ObservableField;
+import androidx.databinding.ObservableInt;
 import androidx.databinding.ObservableLong;
 
-import com.khrayel.slots.model.SlotsDefaultValues;
+import com.khrayel.slots.SlotsDefaultValues;
 import com.khrayel.slots.SlotsRollsValues;
 import com.khrayel.slots.SlotsWinConditions;
 
@@ -86,70 +87,28 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
             }
 
 
-        private SlotsRollsValues slotsRollsValues;
 
 
-//        private final ObservableField <String> roll1_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
-//        private final ObservableField <String> roll2_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
-//        private final ObservableField <String> roll3_string = new ObservableField<>(SlotsRollsValues.ZERO.string_as_html_entity);
-
-        public String getRoll1_string ()
+        public int getRoll1 ()
             {
-                return Objects.requireNonNull(roll1.get()).string_as_html_entity;
+                return roll1.get();
             }
 
-        public String getRoll2_string ()
+        public int getRoll2 ()
             {
-                return Objects.requireNonNull(roll2.get()).string_as_html_entity;
-            }
+               return roll2.get();          }
 
-        public String getRoll3_string ()
+        public int getRoll3 ()
             {
-                return Objects.requireNonNull(roll3.get()).string_as_html_entity;
-            }
-
-        public int getRoll1_drawable_id (SlotsRollsValues.DrawableType type)
-            {
-                switch (type)
-                    {
-                        case DRAWABLE_TYPE_EMOJI:
-                            return Objects.requireNonNull(roll1.get()).drawable_emoji;
-                        case DRAWABLE_TYPE_GEM:
-                            return Objects.requireNonNull(roll1.get()).drawable_gem;
-                    }
-                return 0;
-            }
-
-        public int getRoll2_drawable_id (SlotsRollsValues.DrawableType type)
-            {
-                switch (type)
-                    {
-                        case DRAWABLE_TYPE_EMOJI:
-                            return Objects.requireNonNull(roll2.get()).drawable_emoji;
-                        case DRAWABLE_TYPE_GEM:
-                            return Objects.requireNonNull(roll2.get()).drawable_gem;
-                    }
-                return 0;            }
-
-        public int getRoll3_drawable_id (SlotsRollsValues.DrawableType type)
-            {
-                switch (type)
-                    {
-                        case DRAWABLE_TYPE_EMOJI:
-                            return Objects.requireNonNull(roll3.get()).drawable_emoji;
-                        case DRAWABLE_TYPE_GEM:
-                            return Objects.requireNonNull(roll3.get()).drawable_gem;
-                    }
-                return 0;            }
+                return roll3.get();            }
 
 
-        private final ObservableField<SlotsRollsValues> roll1 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
-        private final ObservableField<SlotsRollsValues> roll2 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
-        private final ObservableField<SlotsRollsValues> roll3 = new ObservableField<>(SlotsRollsValues.getDefaultRoll());
+        private final ObservableInt roll1 = new ObservableInt(SlotsRollsValues.getDefaultRoll().integer);
+        private final ObservableInt roll2 = new ObservableInt(SlotsRollsValues.getDefaultRoll().integer);
+        private final ObservableInt roll3 = new ObservableInt(SlotsRollsValues.getDefaultRoll().integer);
 
-//        //private int roll1 = SlotsRollsValues.ZERO.numeric;
-//        private ObservableInt roll2 = new ObservableInt(default_roll);
-//        private ObservableInt roll3 = new ObservableInt(default_roll);
+
+
 
 
         public void setFieldsFromString (String string)
@@ -297,17 +256,17 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
                     }
 
 
-                roll1.set(SlotsRollsValues.getRandomRoll(upto));
-                roll2.set(SlotsRollsValues.getRandomRoll(upto));
-                roll3.set(SlotsRollsValues.getRandomRoll(upto));
+                roll1.set(SlotsRollsValues.getRandomRoll(upto).integer);
+                roll2.set(SlotsRollsValues.getRandomRoll(upto).integer);
+                roll3.set(SlotsRollsValues.getRandomRoll(upto).integer);
 //                roll1.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 //                roll2.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 //                roll3.set(ThreadLocalRandom.current().nextInt(0, 9 + 1));
 
                 int mult = GetResultMultiplier(
-                        Objects.requireNonNull(roll1.get()).integer,
-                        Objects.requireNonNull(roll2.get()).integer,
-                        Objects.requireNonNull(roll3.get()).integer);
+                        (roll1.get()),
+                        (roll2.get()),
+                        (roll3.get()));
                 if (mult > 0)
                     {
                         Win(mult);
@@ -319,9 +278,9 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
             {
                 score.set(SlotsDefaultValues.default_score.getValue());
                 current_bet.set(SlotsDefaultValues.default_bet.getValue());
-                roll1.set(SlotsRollsValues.getDefaultRoll());
-                roll2.set(SlotsRollsValues.getDefaultRoll());
-                roll3.set(SlotsRollsValues.getDefaultRoll());
+                roll1.set(SlotsRollsValues.getDefaultRoll().integer);
+                roll2.set(SlotsRollsValues.getDefaultRoll().integer);
+                roll3.set(SlotsRollsValues.getDefaultRoll().integer);
                 change_in_score.set(SlotsDefaultValues.default_change_in_score.getValue());
             }
     }

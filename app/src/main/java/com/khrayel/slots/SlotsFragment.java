@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Handler;
-import android.provider.ContactsContract;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -24,9 +22,9 @@ import android.widget.TextView;
 
 
 import com.khrayel.slots.databinding.SlotsFragmentBinding;
-import com.khrayel.slots.model.DataOperations;
 
 import java.util.Objects;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -110,14 +108,29 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 TextView tv_record = (TextView) view.findViewById(R.id.slots_text_record);
                 tv_record.setText(String.format(Long.toString(slotsviewmodel.getRecord())));
 
-                TextView tv_bet_number=view.findViewById(R.id.slots_text_bet_number);
+                TextView tv_bet_number = view.findViewById(R.id.slots_text_bet_number);
                 tv_bet_number.setText(String.format(Long.toString(slotsviewmodel.getBet())));
-
 
 
                 SetReelCentered(view.findViewById(R.id.slots_layout_scroll_1));
                 SetReelCentered(view.findViewById(R.id.slots_layout_scroll_2));
                 SetReelCentered(view.findViewById(R.id.slots_layout_scroll_3));
+
+
+                switch (slotsviewmodel.getSelected_drawable_type())
+                    {
+                        case DRAWABLE_TYPE_EMOJI:
+                        {
+                            view.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(0,SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM)));
+
+                            break;
+                        }
+                        case DRAWABLE_TYPE_GEM:
+                        {
+                            view.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(0,SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI)));
+                            break;
+                        }
+                    }
 
 
                 return view;
@@ -164,6 +177,9 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 Button slots_button_restart = (Button) view.findViewById(R.id.slots_button_restart);
                 slots_button_restart.setOnClickListener(this);
+
+                Button drawable_style_changer_button = view.findViewById(R.id.drawable_style_changer_button);
+                drawable_style_changer_button.setOnClickListener(this);
             }
 
         void SetReelCentered (ScrollView scroll)
@@ -202,15 +218,17 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
         private void PopulateReelOnStart (ViewGroup view)
             {
+                Random random = new Random();
+
                 LinearLayout linearLayout = (LinearLayout) view.getChildAt(0);
 
                 for (int i = 0; i < 5; i++)
                     {
                         ImageView imageView = new ImageView(view.getContext());
-                        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 (int) (view.getContext().getResources().getDimension(R.dimen.slots_roll_size)));
                         params.setMargins(0, 15, 0, 15);
-                        params.gravity= Gravity.CENTER;
+                        params.gravity = Gravity.CENTER;
                         imageView.setLayoutParams(params);
 
 //                        tv.setTextColor(view.getResources().getColor(R.color.black));
@@ -218,8 +236,9 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 //                        tv.setGravity(Gravity.CENTER);
 
 //                        tv.setBackground(AppCompatResources.getDrawable(view.getContext(),SlotsRollsValues.getRandomRollDrawable(slotsviewmodel.selected_drawable_type)));
-
-                        imageView.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getRandomRollDrawable(slotsviewmodel.selected_drawable_type)));
+                        int rnd=random.nextInt(SlotsRollsValues.values().length);
+                        imageView.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(rnd,slotsviewmodel.getSelected_drawable_type())));
+                        imageView.setTag(rnd);
 
                         linearLayout.addView(imageView);
 
