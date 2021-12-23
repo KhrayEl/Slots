@@ -121,15 +121,26 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                     {
                         case DRAWABLE_TYPE_EMOJI:
                         {
-                            view.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(0,SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM)));
+                            view.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(view.getContext(), R.drawable.gem_26));
 
                             break;
                         }
                         case DRAWABLE_TYPE_GEM:
                         {
-                            view.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(0,SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI)));
+                            view.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(view.getContext(), R.drawable._1f601));
                             break;
                         }
+                    }
+
+
+                View sound_button = (view.getRootView()).findViewById(R.id.main_button_sound_toggle);
+
+                if (slotsviewmodel.getSoundEnabled())
+                    {
+                        sound_button.setBackground(AppCompatResources.getDrawable(sound_button.getContext(), R.drawable._1f3b5));
+                    } else
+                    {
+                        sound_button.setBackground(AppCompatResources.getDrawable(sound_button.getContext(), R.drawable.options_sound_disabled));
                     }
 
 
@@ -178,8 +189,13 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 Button slots_button_restart = (Button) view.findViewById(R.id.slots_button_restart);
                 slots_button_restart.setOnClickListener(this);
 
-                Button drawable_style_changer_button = view.findViewById(R.id.drawable_style_changer_button);
+                Button drawable_style_changer_button = view.findViewById(R.id.slots_options_button);
                 drawable_style_changer_button.setOnClickListener(this);
+
+                (view.findViewById(R.id.slots_drawstyle_button)).setOnClickListener(this);
+                (view.findViewById(R.id.main_button_sound_toggle)).setOnClickListener(this);
+                (view.findViewById(R.id.slots_options_overlay_button)).setOnClickListener(this);
+
             }
 
         void SetReelCentered (ScrollView scroll)
@@ -236,8 +252,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 //                        tv.setGravity(Gravity.CENTER);
 
 //                        tv.setBackground(AppCompatResources.getDrawable(view.getContext(),SlotsRollsValues.getRandomRollDrawable(slotsviewmodel.selected_drawable_type)));
-                        int rnd=random.nextInt(SlotsRollsValues.values().length);
-                        imageView.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(rnd,slotsviewmodel.getSelected_drawable_type())));
+                        int rnd = random.nextInt(SlotsRollsValues.values().length);
+                        imageView.setImageDrawable(AppCompatResources.getDrawable(view.getContext(), SlotsRollsValues.getDrawable(rnd, slotsviewmodel.getSelected_drawable_type())));
                         imageView.setTag(rnd);
 
                         linearLayout.addView(imageView);

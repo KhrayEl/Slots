@@ -5,9 +5,7 @@
     tools:context=".SlotsFragment">
 
     <data>
-
         <import type="android.view.View" />
-
         <variable
             name="slotsviewmodel"
             type="com.khrayel.slots.SlotsViewModel" />
@@ -26,7 +24,6 @@
         >
 
 
-
         <include
             android:id="@+id/slots_layout_top_info"
             layout="@layout/slots_layout_top_info"
@@ -34,13 +31,12 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/slots_reel_outline_size"
 
-            android:layout_marginRight="@dimen/slots_reel_outline_size"
             app:layout_constraintBottom_toTopOf="@+id/slots_layout_reels"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:slotsviewmodel="@{slotsviewmodel}"
-            app:layout_constraintVertical_weight="1"/>
+            app:layout_constraintVertical_weight="1"
+            app:slotsviewmodel="@{slotsviewmodel}" />
 
         <include
             android:id="@+id/slots_layout_reels"
@@ -73,6 +69,10 @@
             app:layout_constraintVertical_weight="2"
             app:slotsviewmodel="@{slotsviewmodel}" />
 
-
+        <include
+            android:id="@+id/slots_layout_options_popup"
+            layout="@layout/slots_layout_options"
+            android:visibility="invisible"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

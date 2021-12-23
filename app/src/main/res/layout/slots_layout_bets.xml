@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="slotsviewmodel"
             type="com.khrayel.slots.SlotsViewModel" />
@@ -28,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_weight="1" />
+            app:layout_constraintVertical_weight="5" />
 
 
         <TextView
@@ -36,7 +35,6 @@
             android:id="@+id/slots_text_bet"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/slots_reel_outline_size"
 
             android:gravity="center_vertical|end"
             android:text="@string/bet_text"
@@ -50,13 +48,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/slots_button_spin"
 
-            app:layout_constraintVertical_weight="1" />
+            app:layout_constraintVertical_weight="2" />
 
         <TextView
             android:id="@+id/slots_text_bet_number"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/slots_reel_outline_size"
             android:gravity="center_vertical|start"
             android:textSize="@dimen/main_text_size"
 
@@ -66,7 +63,7 @@
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/slots_text_bet"
             app:layout_constraintTop_toBottomOf="@id/slots_button_spin"
-            app:layout_constraintVertical_weight="1"
+            app:layout_constraintVertical_weight="2"
 
 
             />
@@ -81,7 +78,6 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/slots_reel_outline_size"
             android:gravity="center"
-            android:onClick="OnClick"
             android:text="@string/bet_plus"
             android:textSize="@dimen/main_text_size"
 
@@ -92,7 +88,7 @@
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toBottomOf="@id/slots_text_bet"
-            app:layout_constraintVertical_weight="1" />
+            app:layout_constraintVertical_weight="5" />
 
 
         <Button
@@ -101,7 +97,6 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/slots_reel_outline_size"
             android:gravity="center"
-            android:onClick="OnClick"
             android:text="@string/bet_minus"
             android:textSize="@dimen/main_text_size"
 
@@ -112,7 +107,7 @@
             app:layout_constraintStart_toEndOf="@id/slots_button_bet_plus"
 
             app:layout_constraintTop_toBottomOf="@id/slots_text_bet_number"
-            app:layout_constraintVertical_weight="1" />
+            app:layout_constraintVertical_weight="5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

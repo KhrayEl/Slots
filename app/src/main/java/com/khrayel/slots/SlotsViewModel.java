@@ -107,6 +107,14 @@ public class SlotsViewModel extends ViewModel implements Observable
             }
 
 
+        private boolean sound_enabled = true;
+public boolean getSoundEnabled(){return sound_enabled;}
+        public void ToggleSound ()
+            {
+                sound_enabled = !sound_enabled;
+            }
+
+
         public void setFieldsFromString (String string)
             {
                 slotsModel.setFieldsFromString(string);

@@ -13,7 +13,7 @@
     <dimen name="slots_reel_middlebar_bottom_margin">155dp</dimen>
 
 
-    <dimen name="main_text_size">24sp</dimen>
+    <dimen name="main_text_size">20sp</dimen>
     <dimen name="game_selector_text_size">45sp</dimen>
 
     <dimen name="slots_top_info_height">100dp</dimen>
@@ -22,4 +22,8 @@
 
     <dimen name="slots_bet_button_width">60dp</dimen>
     <dimen name="slots_bet_button_height">60dp</dimen>
+
+    <dimen name="slots_options_button_size">60dp</dimen>
+
+
 </resources>

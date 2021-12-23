@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/_1f3b5.xml" value="0.3828125" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/_1f646.xml" value="0.2898148148148148" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/_1f6ab.xml" value="0.3828125" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/_2699.xml" value="0.3828125" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/gem_1.xml" value="1.0" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/gem_23.xml" value="0.2898148148148148" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/gem_26.xml" value="0.159375" />
@@ -28,6 +31,7 @@
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/ic_gem_blue_5.xml" value="0.33" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/ic_gem_collection.xml" value="0.67" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/ic_launcher_background.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/options_sound_disabled.xml" value="0.3828125" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/reel_background.xml" value="0.2898148148148148" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/reel_background_green.xml" value="0.3828125" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/reel_background_grey.xml" value="0.3828125" />
@@ -36,7 +40,7 @@
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/roll_background.xml" value="0.33" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/slots_reel_background.xml" value="0.3828125" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/slots_roll_selector.xml" value="0.3828125" />
-        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout-land/slots_fragment.xml" value="0.5" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout-land/slots_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/fragment_blank.xml" value="0.1" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/fragment_game_selector.xml" value="0.1" />
@@ -50,10 +54,11 @@
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_bets_restart.xml" value="0.3120471014492754" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_bets.xml" value="0.5474339035769828" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_options.xml" value="0.33" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_reels.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_restart.xml" value="0.3120471014492754" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_roll.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_top_info.xml" value="0.67" />
+        <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_layout_top_info.xml" value="0.5" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_reel.xml" value="0.22" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_reel_icon.xml" value="0.140625" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/layout/slots_reel_icons.xml" value="0.36666666666666664" />

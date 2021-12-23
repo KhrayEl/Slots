@@ -56,9 +56,25 @@ public class SlotsClickHandler
                             HandleRestart(v, slotsViewModel);
                             break;
                         }
-                        case R.id.drawable_style_changer_button:
+                        case R.id.slots_drawstyle_button:
                         {
                             HandleStyleChange(v, slotsViewModel);
+                            break;
+                        }
+                        case R.id.slots_options_button:
+                        {
+                            HandleOptionsPopup(v);
+                            break;
+                        }
+                        case R.id.slots_options_overlay_button:
+                        {
+                            HandleOptionsPopupClose(v);
+                            break;
+                        }
+                        case R.id.main_button_sound_toggle:
+                        {
+                            // TODO add music toggle
+                            HandleSoundToggle(v,slotsViewModel);
                             break;
                         }
                     }
@@ -336,7 +352,7 @@ public class SlotsClickHandler
                 int childs_to_add = SlotsDefaultValues.ROLLS_ADDED_TO_REEL.getValue();
 
                 int reel_anim_delay = 50;
-               // scrollView.setBackground(AppCompatResources.getDrawable(scrollView.getContext(), R.drawable.reel_background_grey));
+                // scrollView.setBackground(AppCompatResources.getDrawable(scrollView.getContext(), R.drawable.reel_background_grey));
                 int children_in_reel = linearLayout_reel.getChildCount();
                 for (int i = childs_to_add * reel_multiplier; i > 0 /*linearLayout_reel.getChildCount() - 5*/
                         && children_in_reel > 5; i--)
@@ -375,8 +391,7 @@ public class SlotsClickHandler
 //                    },0);
             }
 
-        private static void HandleStyleChange (View v, @NonNull SlotsViewModel
-                slotsViewModel)
+        private static void HandleStyleChange (View v, @NonNull SlotsViewModel slotsViewModel)
             {
                 ViewGroup parent = (ViewGroup) v.getParent().getParent().getParent();
 
@@ -385,26 +400,23 @@ public class SlotsClickHandler
                         case DRAWABLE_TYPE_EMOJI:
                         {
                             slotsViewModel.setSelected_drawable_type(SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM);
-                            parent.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getDrawable(0, SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI)));
+                             parent.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable._1f601));
 
                             break;
                         }
                         case DRAWABLE_TYPE_GEM:
                         {
                             slotsViewModel.setSelected_drawable_type(SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI);
-                            parent.findViewById(R.id.drawable_style_changer_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), SlotsRollsValues.getDrawable(0, SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM)));
+                            parent.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.gem_26));
                             break;
                         }
                     }
                 RedrawReels(parent.findViewById(R.id.slots_layout_reel_1), slotsViewModel);
                 RedrawReels(parent.findViewById(R.id.slots_layout_reel_2), slotsViewModel);
                 RedrawReels(parent.findViewById(R.id.slots_layout_reel_3), slotsViewModel);
-
-
             }
 
-        private static void RedrawReels (LinearLayout linearLayout_reel, SlotsViewModel
-                slotsViewModel)
+        private static void RedrawReels (LinearLayout linearLayout_reel, SlotsViewModel slotsViewModel)
             {
                 for (int i = 1; i <= 5; i++)
                     {
@@ -412,5 +424,33 @@ public class SlotsClickHandler
                         int tag = (int) imageView.getTag();
                         imageView.setImageDrawable(AppCompatResources.getDrawable(linearLayout_reel.getContext(), SlotsRollsValues.getDrawable(tag, slotsViewModel.getSelected_drawable_type())));
                     }
+            }
+
+        private static void HandleOptionsPopup (View button)
+            {
+                View options_popup = (button.getRootView()).findViewById(R.id.slots_layout_options_popup);
+                options_popup.setVisibility(View.VISIBLE);
+            }
+
+        private static void HandleOptionsPopupClose (View button)
+            {
+
+                View options_popup = (button.getRootView()).findViewById(R.id.slots_layout_options_popup);
+                options_popup.setVisibility(View.GONE);
+            }
+
+        private static void HandleSoundToggle (View button, SlotsViewModel slotsViewModel)
+            {
+                View sound_button = (button.getRootView()).findViewById(R.id.main_button_sound_toggle);
+
+                slotsViewModel.ToggleSound();
+
+                if (slotsViewModel.getSoundEnabled())
+                    {
+                        sound_button.setBackground(AppCompatResources.getDrawable(sound_button.getContext(), R.drawable._1f3b5));
+                    }
+                else {
+                    sound_button.setBackground(AppCompatResources.getDrawable(sound_button.getContext(), R.drawable.options_sound_disabled));
+                }
             }
     }
