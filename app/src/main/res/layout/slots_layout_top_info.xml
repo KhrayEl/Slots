@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,76 +12,107 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="@dimen/slots_reel_outline_size">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <Button
+            android:id="@+id/drawable_style_changer_button"
+            android:layout_width="@dimen/slots_roll_size"
+            android:layout_height="@dimen/slots_roll_size"
+            android:layout_margin="@dimen/slots_reel_outline_size"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/record_text"
-                android:textSize="@dimen/main_text_size" />
+            android:onClick="OnClick"
 
-            <TextView
-                android:id="@+id/slots_text_record"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textSize="@dimen/main_text_size" />
-            <!--
-                            android:text="@{Long.toString(slotsviewmodel.getRecord)}"
-            -->
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/slots_layout_score"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/score_text"
-                android:textSize="@dimen/main_text_size" />
 
-            <TextView
-                android:id="@+id/slots_text_Score"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:textSize="@dimen/main_text_size" />
-            <!--
-            android:text="@{Long.toString(slotsviewmodel.getScore())}"
-            -->
+            />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/slots_record_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:text="@string/record_text"
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintBottom_toTopOf="@id/slots_score_text"
 
-        <LinearLayout
-            android:id="@+id/slots_layout_winloss"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:textSize="@dimen/main_text_size">
+            app:layout_constraintEnd_toStartOf="@id/slots_record_value"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@id/drawable_style_changer_button"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/slots_textWinLoss"
-                android:layout_width="match_parent"
-                android:layout_height="30sp"
-                android:gravity="end"
-                android:text="@{slotsviewmodel.getChangeInScore()&gt;0?`+`+Long.toString(slotsviewmodel.getChangeInScore()):Long.toString(slotsviewmodel.getChangeInScore())}"
-                android:textColor="@{slotsviewmodel.getChangeInScore()&gt;0?@color/green:@color/red}"
-                android:visibility="invisible" />
-            <!--            android:visibility="@{slotsviewmodel.getChangeInScore()==0?  View.INVISIBLE : View.VISIBLE}"-->
+        <TextView
+            android:id="@+id/slots_record_value"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/main_text_size"
 
-        </LinearLayout>
+            app:layout_constraintBottom_toTopOf="@id/slots_score_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="5"
+            app:layout_constraintStart_toEndOf="@id/slots_record_text"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--
+                        android:text="@{Long.toString(slotsviewmodel.getRecord)}"
+        -->
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/slots_score_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:text="@string/score_text"
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintBottom_toTopOf="@id/slots_winloss_value"
+
+
+            app:layout_constraintEnd_toStartOf="@id/slots_score_value"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@id/drawable_style_changer_button"
+            app:layout_constraintTop_toBottomOf="@id/slots_record_text" />
+
+        <TextView
+            android:id="@+id/slots_score_value"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintBottom_toTopOf="@id/slots_winloss_value"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="5"
+            app:layout_constraintStart_toEndOf="@id/slots_score_text"
+            app:layout_constraintTop_toBottomOf="@id/slots_record_value" />
+        <!--
+        android:text="@{Long.toString(slotsviewmodel.getScore())}"
+        -->
+
+
+        <TextView
+            android:id="@+id/slots_winloss_value"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical|end"
+            android:text="@{slotsviewmodel.getChangeInScore()&gt;0?`+`+Long.toString(slotsviewmodel.getChangeInScore()):Long.toString(slotsviewmodel.getChangeInScore())}"
+            android:textColor="@{slotsviewmodel.getChangeInScore()&gt;0?@color/green:@color/red}"
+            android:visibility="invisible"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/drawable_style_changer_button"
+            app:layout_constraintTop_toBottomOf="@id/slots_score_value"
+
+            />
+        <!--            android:visibility="@{slotsviewmodel.getChangeInScore()==0?  View.INVISIBLE : View.VISIBLE}"-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

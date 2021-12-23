@@ -26,33 +26,31 @@
         >
 
 
-
         <include
             android:id="@+id/slots_layout_top_info"
             layout="@layout/slots_layout_top_info"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="@dimen/slots_reel_outline_size"
-
-            android:layout_marginRight="@dimen/slots_reel_outline_size"
-            app:layout_constraintBottom_toTopOf="@+id/slots_layout_reels"
+            app:layout_constraintBottom_toTopOf="@id/slots_layout_bets_restart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintHorizontal_weight="4"
+            app:layout_constraintStart_toEndOf="@id/slots_layout_reels"
             app:layout_constraintTop_toTopOf="parent"
-            app:slotsviewmodel="@{slotsviewmodel}"
-            app:layout_constraintVertical_weight="1"/>
+            app:layout_constraintVertical_weight="1"
+            app:slotsviewmodel="@{slotsviewmodel}" />
 
         <include
             android:id="@+id/slots_layout_reels"
             layout="@layout/slots_layout_reels"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/slots_layout_bets_restart"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@+id/slots_layout_top_info"
-            app:layout_constraintVertical_weight="5"
+app:layout_constraintEnd_toStartOf="@id/slots_layout_top_info"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="4"
 
             app:slotsviewmodel="@{slotsviewmodel}" />
 
@@ -67,10 +65,12 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
 
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/slots_layout_reels"
+            app:layout_constraintHorizontal_weight="2"
             app:layout_constraintVertical_weight="2"
+
+            app:layout_constraintStart_toEndOf="@id/slots_layout_reels"
+            app:layout_constraintTop_toBottomOf="@id/slots_layout_top_info"
+
             app:slotsviewmodel="@{slotsviewmodel}" />
 
 

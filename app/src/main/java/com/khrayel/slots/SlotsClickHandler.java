@@ -2,7 +2,6 @@ package com.khrayel.slots;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -104,10 +103,10 @@ public class SlotsClickHandler
 //                scroll_3.setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.reel_background_grey));
 
 
-                TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
+                TextView tv_score_change = parent.findViewById(R.id.slots_winloss_value);
                 tv_score_change.setVisibility(View.INVISIBLE);
-                TextView tv_score = parent.findViewById(R.id.slots_text_Score);
-                TextView tv_record = parent.findViewById(R.id.slots_text_record);
+                TextView tv_score = parent.findViewById(R.id.slots_score_value);
+                TextView tv_record = parent.findViewById(R.id.slots_record_value);
 
                 btn_spin.setClickable(false);
                 btn_plus.setClickable(false);
@@ -319,10 +318,10 @@ public class SlotsClickHandler
 
 
                 slotsViewModel.Restart();
-                TextView tv_score = parent.findViewById(R.id.slots_text_Score);
+                TextView tv_score = parent.findViewById(R.id.slots_score_value);
                 tv_score.setText(String.format(Long.toString(slotsViewModel.getScore())));
 
-                TextView tv_score_change = parent.findViewById(R.id.slots_textWinLoss);
+                TextView tv_score_change = parent.findViewById(R.id.slots_winloss_value);
                 tv_score_change.setVisibility(View.INVISIBLE);
 
                 TextView tv_bet_number = parent.findViewById(R.id.slots_text_bet_number);

@@ -103,9 +103,9 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 SetOnClickListeners(view);
 
-                TextView tv_score = (TextView) view.findViewById(R.id.slots_text_Score);
+                TextView tv_score = (TextView) view.findViewById(R.id.slots_score_value);
                 tv_score.setText(String.format(Long.toString(slotsviewmodel.getScore())));
-                TextView tv_record = (TextView) view.findViewById(R.id.slots_text_record);
+                TextView tv_record = (TextView) view.findViewById(R.id.slots_record_value);
                 tv_record.setText(String.format(Long.toString(slotsviewmodel.getRecord())));
 
                 TextView tv_bet_number = view.findViewById(R.id.slots_text_bet_number);

@@ -16,55 +16,57 @@
 
         <Button
             android:id="@+id/slots_button_spin"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:text="@string/spin_text"
             android:textSize="@dimen/main_text_size"
 
             app:layout_constraintBottom_toTopOf="@id/slots_text_bet"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+
             app:layout_constraintStart_toStartOf="parent"
 
             app:layout_constraintTop_toTopOf="parent"
-
-            />
+            app:layout_constraintVertical_weight="1" />
 
 
         <TextView
 
             android:id="@+id/slots_text_bet"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-
-            android:text="@string/bet_text"
-            android:textSize="@dimen/main_text_size"
-
-
-            app:layout_constraintBottom_toTopOf="@id/slots_button_bet_plus"
-            app:layout_constraintEnd_toStartOf="@id/slots_text_bet_number"
+            android:layout_height="0dp"
             android:layout_margin="@dimen/slots_reel_outline_size"
 
-            app:layout_constraintHorizontal_weight="2"
-            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center_vertical|end"
+            android:text="@string/bet_text"
 
-            app:layout_constraintTop_toBottomOf="@id/slots_button_spin" />
+
+            android:textSize="@dimen/main_text_size"
+            app:layout_constraintBottom_toTopOf="@id/slots_button_bet_plus"
+            app:layout_constraintEnd_toStartOf="@id/slots_text_bet_number"
+
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slots_button_spin"
+
+            app:layout_constraintVertical_weight="1" />
 
         <TextView
             android:id="@+id/slots_text_bet_number"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/slots_reel_outline_size"
-            android:gravity="start"
-            android:textSize="@dimen/main_text_size"
+            android:layout_height="0dp"
             android:layout_margin="@dimen/slots_reel_outline_size"
+            android:gravity="center_vertical|start"
+            android:textSize="@dimen/main_text_size"
 
-            app:layout_constraintBottom_toTopOf="@id/slots_button_bet_plus"
+            app:layout_constraintBottom_toTopOf="@+id/slots_button_bet_minus"
             app:layout_constraintEnd_toEndOf="parent"
 
-            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/slots_text_bet"
             app:layout_constraintTop_toBottomOf="@id/slots_button_spin"
+            app:layout_constraintVertical_weight="1"
 
 
             />
@@ -74,36 +76,43 @@
 
 
         <Button
-
             android:id="@+id/slots_button_bet_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/slots_reel_outline_size"
             android:gravity="center"
-
             android:onClick="OnClick"
             android:text="@string/bet_plus"
             android:textSize="@dimen/main_text_size"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/slots_button_bet_minus"
+
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/slots_text_bet_number" />
+
+            app:layout_constraintTop_toBottomOf="@id/slots_text_bet"
+            app:layout_constraintVertical_weight="1" />
 
 
         <Button
             android:id="@+id/slots_button_bet_minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/slots_reel_outline_size"
             android:gravity="center"
-
             android:onClick="OnClick"
             android:text="@string/bet_minus"
             android:textSize="@dimen/main_text_size"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@id/slots_button_bet_plus"
-            app:layout_constraintTop_toBottomOf="@id/slots_text_bet_number" />
+
+            app:layout_constraintTop_toBottomOf="@id/slots_text_bet_number"
+            app:layout_constraintVertical_weight="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
