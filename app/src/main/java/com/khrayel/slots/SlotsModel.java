@@ -87,7 +87,10 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
             }
 
 
-
+        public int getWinFlag ()
+            {
+                return GetFlagWinningRolls(roll1.get(), roll2.get(), roll3.get());
+            }
 
         public int getRoll1 ()
             {
@@ -96,19 +99,18 @@ public class SlotsModel extends BaseObservable implements SlotsWinConditions
 
         public int getRoll2 ()
             {
-               return roll2.get();          }
+                return roll2.get();
+            }
 
         public int getRoll3 ()
             {
-                return roll3.get();            }
+                return roll3.get();
+            }
 
 
         private final ObservableInt roll1 = new ObservableInt(SlotsRollsValues.getDefaultRoll().integer);
         private final ObservableInt roll2 = new ObservableInt(SlotsRollsValues.getDefaultRoll().integer);
         private final ObservableInt roll3 = new ObservableInt(SlotsRollsValues.getDefaultRoll().integer);
-
-
-
 
 
         public void setFieldsFromString (String string)

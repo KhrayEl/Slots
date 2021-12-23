@@ -86,6 +86,11 @@ public class SlotsViewModel extends ViewModel implements Observable
             }
 
 
+        public int getWinFlag ()
+            {
+                return slotsModel.getWinFlag();
+            }
+
         /**
          * @return true if gameover
          */

@@ -10,7 +10,8 @@ package com.khrayel.slots;
         default_record (0),
         default_bet ( 10),
         min_bet (1),
-        default_change_in_score(0);
+        default_change_in_score(0),
+        ROLLS_ADDED_TO_REEL(50);
 
         private final int value;
 

@@ -21,20 +21,43 @@ public interface SlotsWinConditions
             {
 
 
-
                 if (
                         (roll1 == roll2 && roll2 != roll3 && roll1 != roll3) ||
-                        (roll1 != roll2 && roll2 == roll3 && roll1 != roll3) ||
-                        (roll1 != roll2 && roll2 != roll3 && roll1 == roll3)
+                                (roll1 != roll2 && roll2 == roll3 && roll1 != roll3) ||
+                                (roll1 != roll2 && roll2 != roll3 && roll1 == roll3)
 
                 )
                     {
                         return Multiplier.TWO_MATCH.multiplier_value;
+                    } else if (roll1 == roll2 && roll2 == roll3)
+                    {
+                        return Multiplier.THREE_MATCH.multiplier_value;
                     }
-                else if (roll1==roll2&&roll2==roll3)
-                    {return Multiplier.THREE_MATCH.multiplier_value;}
 
                 return Multiplier.NO_MATCH.multiplier_value;
+            }
+
+        default int GetFlagWinningRolls (int roll1, int roll2, int roll3)
+            {
+
+                if (roll1 == roll2 && roll2 != roll3 && roll1 != roll3)
+                    {
+                        return 3; // 0011
+                    }
+                if (roll1 != roll2 && roll2 == roll3 && roll1 != roll3)
+                    {
+                        return 6; // 0110
+                    }
+                if (roll1 != roll2 && roll2 != roll3 && roll1 == roll3)
+                    {
+                        return 5;// 0101
+                    }
+                if (roll1 == roll2 && roll2 == roll3)
+                    {
+                        return 7; // 0111
+                    }
+                return 0;
+
             }
 
     }
