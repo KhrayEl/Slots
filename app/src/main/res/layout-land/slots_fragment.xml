@@ -73,6 +73,10 @@ app:layout_constraintEnd_toStartOf="@id/slots_layout_top_info"
 
             app:slotsviewmodel="@{slotsviewmodel}" />
 
-
+        <include
+            android:id="@+id/slots_layout_options_popup"
+            layout="@layout/slots_layout_options"
+            android:visibility="invisible"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
