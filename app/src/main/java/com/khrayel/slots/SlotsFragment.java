@@ -80,26 +80,35 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 //                        mParam2 = getArguments().getString(ARG_PARAM2);
 //                    }
 //                setContentView(R.layout.fragment_slots);
-
             }
 
         @Override
         public View onCreateView (@NonNull LayoutInflater inflater, ViewGroup container,
                                   Bundle savedInstanceState)
             {
-                // Inflate the layout for this fragment
-//                return inflater.inflate(R.layout.fragment_slots, container, false);
 
                 slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
+
+
+
+
+                if (slotsviewmodel.getSoundEnabled())
+                    {
+                        slotsviewmodel.CreateBackgroundMusicPlayer(this.getContext());
+                    }
 
                 SlotsFragmentBinding binding = DataBindingUtil.inflate(
                         inflater, R.layout.slots_fragment, container, false);
                 View view = binding.getRoot();
-                //here data must be an instance of the class MarsDataProvider
+
                 binding.setSlotsviewmodel(slotsviewmodel);
 
 
                 slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext())));
+
+
+
+
 
                 SetOnClickListeners(view);
 
@@ -121,19 +130,20 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                     {
                         case DRAWABLE_TYPE_EMOJI:
                         {
-                            view.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(view.getContext(), R.drawable.gem_26));
+                            view.findViewById(R.id.slots_options_drawstyle_button).setBackground(AppCompatResources.getDrawable(view.getContext(), R.drawable.gem_26));
 
                             break;
                         }
                         case DRAWABLE_TYPE_GEM:
                         {
-                            view.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(view.getContext(), R.drawable._1f601));
+                            view.findViewById(R.id.slots_options_drawstyle_button).setBackground(AppCompatResources.getDrawable(view.getContext(), R.drawable._1f601));
                             break;
                         }
                     }
 
 
-                View sound_button = (view.getRootView()).findViewById(R.id.main_button_sound_toggle);
+                View sound_button = (view.getRootView()).findViewById(R.id.slots_options_sound_button_toggle);
+
 
                 if (slotsviewmodel.getSoundEnabled())
                     {
@@ -158,10 +168,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
         @Override
         public void onDestroy ()
             {
+                slotsviewmodel.ToggleSound();
                 super.onDestroy();
-
-                // write data to file
-                //writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), this.getContext());
             }
 
         @Override
@@ -171,7 +179,6 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 // write data to file
                 writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext()));
-
             }
 
 
@@ -192,8 +199,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 Button drawable_style_changer_button = view.findViewById(R.id.slots_options_button);
                 drawable_style_changer_button.setOnClickListener(this);
 
-                (view.findViewById(R.id.slots_drawstyle_button)).setOnClickListener(this);
-                (view.findViewById(R.id.main_button_sound_toggle)).setOnClickListener(this);
+                (view.findViewById(R.id.slots_options_drawstyle_button)).setOnClickListener(this);
+                (view.findViewById(R.id.slots_options_sound_button_toggle)).setOnClickListener(this);
                 (view.findViewById(R.id.slots_options_overlay_button)).setOnClickListener(this);
 
             }

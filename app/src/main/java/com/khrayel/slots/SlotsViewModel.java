@@ -1,5 +1,8 @@
 package com.khrayel.slots;
 
+import android.content.Context;
+import android.media.MediaPlayer;
+
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
@@ -106,14 +109,39 @@ public class SlotsViewModel extends ViewModel implements Observable
                 return gameover;
             }
 
+        private MediaPlayer background_music_player = new MediaPlayer();
+
+        public void CreateBackgroundMusicPlayer (Context context)
+            {
+                background_music_player = MediaPlayer.create(context, R.raw.music_1);
+                background_music_player.setLooping(true);
+                background_music_player.start();
+            }
 
         private boolean sound_enabled = true;
-public boolean getSoundEnabled(){return sound_enabled;}
+
+        public boolean getSoundEnabled ()
+            {
+
+                return sound_enabled;
+            }
+
         public void ToggleSound ()
             {
+                if (sound_enabled)
+                    {
+                        background_music_player.pause();
+                    } else
+                    {
+                        background_music_player.start();
+                    }
                 sound_enabled = !sound_enabled;
             }
 
+        public void SetSoundVolume (float volume)
+            {
+                background_music_player.setVolume(volume, volume);
+            }
 
         public void setFieldsFromString (String string)
             {

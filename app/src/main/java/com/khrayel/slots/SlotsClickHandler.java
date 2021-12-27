@@ -56,7 +56,7 @@ public class SlotsClickHandler
                             HandleRestart(v, slotsViewModel);
                             break;
                         }
-                        case R.id.slots_drawstyle_button:
+                        case R.id.slots_options_drawstyle_button:
                         {
                             HandleStyleChange(v, slotsViewModel);
                             break;
@@ -71,7 +71,7 @@ public class SlotsClickHandler
                             HandleOptionsPopupClose(v);
                             break;
                         }
-                        case R.id.main_button_sound_toggle:
+                        case R.id.slots_options_sound_button_toggle:
                         {
                             // TODO add music toggle
                             HandleSoundToggle(v,slotsViewModel);
@@ -400,14 +400,14 @@ public class SlotsClickHandler
                         case DRAWABLE_TYPE_EMOJI:
                         {
                             slotsViewModel.setSelected_drawable_type(SlotsRollsValues.DrawableType.DRAWABLE_TYPE_GEM);
-                             parent.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable._1f601));
+                             parent.findViewById(R.id.slots_options_drawstyle_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable._1f601));
 
                             break;
                         }
                         case DRAWABLE_TYPE_GEM:
                         {
                             slotsViewModel.setSelected_drawable_type(SlotsRollsValues.DrawableType.DRAWABLE_TYPE_EMOJI);
-                            parent.findViewById(R.id.slots_drawstyle_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.gem_26));
+                            parent.findViewById(R.id.slots_options_drawstyle_button).setBackground(AppCompatResources.getDrawable(parent.getContext(), R.drawable.gem_26));
                             break;
                         }
                     }
@@ -441,7 +441,7 @@ public class SlotsClickHandler
 
         private static void HandleSoundToggle (View button, SlotsViewModel slotsViewModel)
             {
-                View sound_button = (button.getRootView()).findViewById(R.id.main_button_sound_toggle);
+                View sound_button = (button.getRootView()).findViewById(R.id.slots_options_sound_button_toggle);
 
                 slotsViewModel.ToggleSound();
 
