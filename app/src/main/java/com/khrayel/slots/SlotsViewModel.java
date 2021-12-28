@@ -11,15 +11,23 @@ import androidx.lifecycle.ViewModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 public class SlotsViewModel extends ViewModel implements Observable
     {
 
-        private SlotsModel slotsModel = new SlotsModel();
+        private final SlotsModel slotsModel = new SlotsModel();
 
 
         public String getSlots_data_filename ()
             {
                 return this.slotsModel.getSlots_data_filename();
+            }
+
+        public String getSlots_options_filename ()
+            {
+                return "slots_options";
             }
 
         // CURRENT SCORE
@@ -111,45 +119,100 @@ public class SlotsViewModel extends ViewModel implements Observable
 
         private MediaPlayer background_music_player = new MediaPlayer();
 
+        private boolean sound_enabled = true;
+
+        private float sound_volume;
+
+        public float getSoundVolume ()
+            {
+                return sound_volume;
+            }
+
+        public void setSoundVolume (float sound_volume)
+            {
+                this.sound_volume = sound_volume;
+                background_music_player.setVolume(sound_volume, sound_volume);
+                notifyChange();
+            }
+
         public void CreateBackgroundMusicPlayer (Context context)
             {
                 background_music_player = MediaPlayer.create(context, R.raw.music_1);
                 background_music_player.setLooping(true);
+                background_music_player.setVolume(sound_volume, sound_volume);
                 background_music_player.start();
             }
 
-        private boolean sound_enabled = true;
 
         public boolean getSoundEnabled ()
             {
-
                 return sound_enabled;
+            }
+
+        public void setSoundEnabled (boolean sound_enabled)
+            {
+                this.sound_enabled = sound_enabled;
             }
 
         public void ToggleSound ()
             {
                 if (sound_enabled)
                     {
-                        background_music_player.pause();
+                        background_music_player.setVolume(0, 0);
                     } else
                     {
-                        background_music_player.start();
+                        background_music_player.setVolume(sound_volume, sound_volume);
                     }
                 sound_enabled = !sound_enabled;
             }
 
-        public void SetSoundVolume (float volume)
-            {
-                background_music_player.setVolume(volume, volume);
-            }
 
         public void setFieldsFromString (String string)
             {
                 slotsModel.setFieldsFromString(string);
             }
 
+        public void loadOptionsFromString (String string)
+            {
+                JSONObject json = null;
+                if (!string.equals(""))
+                    {
 
-        private PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
+                        try
+                            {
+                                json = new JSONObject(string);
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+                        try
+                            {
+                                float volume;
+                                volume = BigDecimal.valueOf(Objects.requireNonNull(json).getDouble("volume")).floatValue();
+                                setSoundVolume(volume);
+
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        try
+                            {
+                                boolean sound_enabled;
+                                sound_enabled = Objects.requireNonNull(json).getBoolean("sound_enabled");
+                                setSoundEnabled(sound_enabled);
+
+                            } catch (JSONException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+
+                    }
+            }
+
+
+        private final PropertyChangeRegistry callbacks = new PropertyChangeRegistry();
 
         @Override
         public void addOnPropertyChangedCallback (
@@ -209,12 +272,39 @@ public class SlotsViewModel extends ViewModel implements Observable
 //
 //                json.put("Values", valuesJson); //puts a json inside another
 
-                String jsonString = json.toString();
+
+                //next, saves the file:
+                // slotsModel.getRepo().WriteJsonStringToFile(jsonString);
+                return json.toString();
+            }
+
+        String WriteOptionsToJsonString ()
+            {
+                //  JSONArray jsonArray = new JSONArray();
+                //jsonArray.put(record);
+
+
+                JSONObject json = new JSONObject(); //creates main json
+                try
+                    {
+                        json.put("volume", getSoundVolume());
+                        json.put("sound_enabled", getSoundEnabled());
+
+                    } catch (JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+//                JSONObject valuesJson = new JSONObject(); //another object
+//                valuesJson.put("Car", "Maruti");
+//
+//                json.put("Values", valuesJson); //puts a json inside another
 
 
                 //next, saves the file:
                 // slotsModel.getRepo().WriteJsonStringToFile(jsonString);
-                return jsonString;
+
+                return json.toString();
             }
 
 

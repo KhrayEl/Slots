@@ -32,13 +32,13 @@
                 android:layout_height="@dimen/slots_roll_size"
                 android:background="@drawable/_1f3b5"
                 app:layout_constraintBottom_toTopOf="@id/slots_options_drawstyle_button"
-                app:layout_constraintEnd_toStartOf="@id/slots_options_sound_slider"
+                app:layout_constraintEnd_toStartOf="@id/slots_options_sound_seekbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <SeekBar
-                android:id="@+id/slots_options_sound_slider"
+                android:id="@+id/slots_options_sound_seekbar"
                 android:layout_width="200dp"
                 android:layout_height="@dimen/slots_roll_size"
                 app:layout_constraintBottom_toBottomOf="@id/slots_options_sound_button_toggle"

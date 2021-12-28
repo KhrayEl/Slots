@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 
@@ -90,8 +91,6 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 slotsviewmodel = new ViewModelProvider(this).get(SlotsViewModel.class);
 
 
-
-
                 if (slotsviewmodel.getSoundEnabled())
                     {
                         slotsviewmodel.CreateBackgroundMusicPlayer(this.getContext());
@@ -105,12 +104,9 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
 
                 slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext())));
+                slotsviewmodel.loadOptionsFromString(readStringFromFile(slotsviewmodel.getSlots_options_filename(), Objects.requireNonNull(this.getContext())));
 
-
-
-
-
-                SetOnClickListeners(view);
+                SetListeners(view);
 
                 TextView tv_score = (TextView) view.findViewById(R.id.slots_score_value);
                 tv_score.setText(String.format(Long.toString(slotsviewmodel.getScore())));
@@ -179,10 +175,12 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                 // write data to file
                 writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext()));
+                writeStringToFile(slotsviewmodel.WriteOptionsToJsonString(), slotsviewmodel.getSlots_options_filename(), Objects.requireNonNull(this.getContext()));
+
             }
 
 
-        void SetOnClickListeners (View view)
+        private void SetListeners (View view)
             {
                 Button slots_button_bet_plus = (Button) view.findViewById(R.id.slots_button_bet_plus);
                 slots_button_bet_plus.setOnClickListener(this);
@@ -203,9 +201,34 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 (view.findViewById(R.id.slots_options_sound_button_toggle)).setOnClickListener(this);
                 (view.findViewById(R.id.slots_options_overlay_button)).setOnClickListener(this);
 
+
+                SeekBar sound_seekBar = (SeekBar) view.findViewById(R.id.slots_options_sound_seekbar);
+                sound_seekBar.setProgress((int) (slotsviewmodel.getSoundVolume() * 100));
+                sound_seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
+                    {
+
+                        @Override
+                        public void onStopTrackingTouch (SeekBar seekBar)
+                            {
+                                // TODO Auto-generated method stub
+                            }
+
+                        @Override
+                        public void onStartTrackingTouch (SeekBar seekBar)
+                            {
+                                // TODO Auto-generated method stub
+                            }
+
+                        @Override
+                        public void onProgressChanged (SeekBar seekBar, int progress, boolean fromUser)
+                            {
+                                slotsviewmodel.setSoundVolume(progress / 100f);
+                            }
+                    });
+
             }
 
-        void SetReelCentered (ScrollView scroll)
+        private void SetReelCentered (ScrollView scroll)
             {
                 scroll.setOnTouchListener(new View.OnTouchListener()
                     {
@@ -267,4 +290,5 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
 
                     }
             }
+
     }
