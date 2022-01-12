@@ -24,11 +24,9 @@ public class SlotsViewModel extends ViewModel implements Observable
             {
                 return this.slotsModel.getSlots_data_filename();
             }
-
-        public String getSlots_options_filename ()
-            {
-                return "slots_options";
-            }
+        public String getSlots_options_filename(){
+            return "slots_options";
+        }
 
         // CURRENT SCORE
         @Bindable
@@ -121,7 +119,7 @@ public class SlotsViewModel extends ViewModel implements Observable
 
         private boolean sound_enabled = true;
 
-        private float sound_volume;
+        private float sound_volume=0f;
 
         public float getSoundVolume ()
             {
@@ -158,10 +156,10 @@ public class SlotsViewModel extends ViewModel implements Observable
             {
                 if (sound_enabled)
                     {
-                        background_music_player.setVolume(0, 0);
+                        background_music_player.pause();
                     } else
                     {
-                        background_music_player.setVolume(sound_volume, sound_volume);
+                        background_music_player.start();
                     }
                 sound_enabled = !sound_enabled;
             }
@@ -210,6 +208,8 @@ public class SlotsViewModel extends ViewModel implements Observable
 
                     }
             }
+
+
 
 
         private final PropertyChangeRegistry callbacks = new PropertyChangeRegistry();

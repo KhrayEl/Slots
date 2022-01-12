@@ -164,19 +164,26 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
         @Override
         public void onDestroy ()
             {
-                slotsviewmodel.ToggleSound();
+                //slotsviewmodel.ToggleSound();
                 super.onDestroy();
+            }
+
+        @Override
+        public void onResume ()
+            {
+                super.onResume();
+                slotsviewmodel.ToggleSound();
             }
 
         @Override
         public void onStop ()
             {
                 super.onStop();
+                slotsviewmodel.ToggleSound();
 
                 // write data to file
                 writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext()));
                 writeStringToFile(slotsviewmodel.WriteOptionsToJsonString(), slotsviewmodel.getSlots_options_filename(), Objects.requireNonNull(this.getContext()));
-
             }
 
 
