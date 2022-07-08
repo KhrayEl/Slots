@@ -8,8 +8,13 @@
     <string name="bet_plus">&#10133;</string>
     <string name="bet_minus">&#10134;</string>
     <string name="select_slots_text">&#127920; SLOTS &#127920;</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="change_profile_text">Change profile</string>
+    <string name="profile_enter_name_text">Enter name</string>
+    <string name="profile_change_window_button_next_text">Next</string>
+    <string name="profile_enter_pass_window_pass_text">Enter password</string>
+    <string name="profile_wrong_pass_window_text">Wrong password\nPlease try again</string>
+    <string name="text_OK">OK</string>
+    <string name="profile_bad_pass_window_text">Bad password\nPlease try again</string>
 
 </resources>

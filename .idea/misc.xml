@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout-land/slots_layout_top_info.xml" value="0.1" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/main_activity.xml" value="0.17074275362318841" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/main_game_selector_fragment.xml" value="0.1" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/profile_fragment_main.xml" value="0.22" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/profile_layout_main.xml" value="0.1" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/slots_bets_restart.xml" value="0.17074275362318841" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/slots_fragment.xml" value="0.17074275362318841" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/slots_layout_bets.xml" value="0.17074275362318841" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/slots_layout_options.xml" value="0.1" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/slots_layout_reels.xml" value="0.17074275362318841" />
+        <entry key="..\:/Coding/Android/Projects/Slots/app/src/main/res/layout/slots_layout_top_info.xml" value="0.1" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/_1f3b5.xml" value="0.3828125" />
         <entry key="..\:/Users/Dinder/Desktop/Codes/Android/Projects/Slots/app/src/main/res/drawable/_1f646.xml" value="0.2898148148148148" />

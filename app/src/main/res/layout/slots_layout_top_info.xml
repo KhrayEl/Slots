@@ -3,13 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="slotsviewmodel"
             type="com.khrayel.slots.SlotsViewModel" />
-
         <import type="android.view.View" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,7 +27,6 @@
 
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_weight="10"
-
             />
 
         <TextView

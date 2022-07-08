@@ -25,5 +25,5 @@
 
     <dimen name="slots_options_button_size">60dp</dimen>
 
-
+    <dimen name="setting_window_width">300dp</dimen>
 </resources>

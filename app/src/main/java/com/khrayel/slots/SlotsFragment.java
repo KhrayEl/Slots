@@ -103,8 +103,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 binding.setSlotsviewmodel(slotsviewmodel);
 
 
-                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext())));
-                slotsviewmodel.loadOptionsFromString(readStringFromFile(slotsviewmodel.getSlots_options_filename(), Objects.requireNonNull(this.getContext())));
+                slotsviewmodel.setFieldsFromString(readStringFromFile(slotsviewmodel.getSlots_data_filename(), this.requireContext()));
+                slotsviewmodel.loadOptionsFromString(readStringFromFile(slotsviewmodel.getSlots_options_filename(), this.requireContext()));
 
                 SetListeners(view);
 
@@ -182,8 +182,8 @@ public class SlotsFragment extends Fragment implements DataOperations, View.OnCl
                 slotsviewmodel.ToggleSound();
 
                 // write data to file
-                writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), Objects.requireNonNull(this.getContext()));
-                writeStringToFile(slotsviewmodel.WriteOptionsToJsonString(), slotsviewmodel.getSlots_options_filename(), Objects.requireNonNull(this.getContext()));
+                writeStringToFile(slotsviewmodel.WriteFieldsToJsonString(), slotsviewmodel.getSlots_data_filename(), this.requireContext());
+                writeStringToFile(slotsviewmodel.WriteOptionsToJsonString(), slotsviewmodel.getSlots_options_filename(), this.requireContext());
             }
 
 

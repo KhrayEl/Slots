@@ -1,24 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context="com.khrayel.main_app.GameSelector">
+    tools:context=".GameSelector">
 
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/slots_StartButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_slots_text"
-        android:textSize="@dimen/game_selector_text_size" />
+    <data>
 
-<!--    <Button-->
-<!--        android:id="@+id/tests_StartButton"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Tests"-->
-<!--        android:textSize="@dimen/game_selector_text_size" />-->
-</LinearLayout>
+        <import type="android.view.View" />
+
+        <variable
+            name="profileviewmodel"
+            type="com.khrayel.main_app.profile.ProfileViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/profile_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="@{profileviewmodel.name}"
+                android:textSize="@dimen/game_selector_text_size"
+                tools:text="test" />
+
+            <Button
+                android:id="@+id/slots_StartButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_slots_text"
+                android:textSize="@dimen/game_selector_text_size" />
+
+            <!--    <Button-->
+            <!--        android:id="@+id/tests_StartButton"-->
+            <!--        android:layout_width="wrap_content"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:text="Tests"-->
+            <!--        android:textSize="@dimen/game_selector_text_size" />-->
+        </LinearLayout>
+        <include
+            android:id="@+id/profile_overlay_popup"
+            layout="@layout/profile_fragment_main"
+            android:visibility="invisible"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+</layout>
